@@ -1,8 +1,7 @@
 # Ersilia Literature Digest — Week of 2026-05-21
 
-**Connectors:** Alerts and Newsletters 🟢 · Slack 🟢 · Europe PMC 🟢 · bioRxiv 🟢
-
-**Markers:** ⭐ very-high-impact venue · 🌍 LMIC-led · 🤖 candidate model for the Ersilia Model Hub · 🗃️ dataset useful for Ersilia modelling · 💻 open code linked from the paper
+**Connectors:** Alerts and Newsletters 🟢 · Slack 🟢 · Europe PMC 🟢 · bioRxiv 🟢  
+**Markers:** ⭐ High impact · 🌍 LMIC · 🤖 Candidate model · 🗃️ Interesting dataset · 💻 Code available
 
 ## AI agents and foundation models for science
 
