@@ -1,7 +1,8 @@
 # Ersilia Literature Digest — Week of 2026-05-21
 
 **Connectors:** Alerts and Newsletters 🟢 · Slack 🟢 · Europe PMC 🟢 · bioRxiv 🟢  
-**Markers:** ⭐ High impact · 🌍 LMIC · 🤖 Candidate model · 🗃️ Interesting dataset · 💻 Code available
+**Markers:** ⭐ High impact · 🌍 LMIC · 🤖 Candidate model · 🗃️ Interesting dataset · 💻 Code available  
+**Hub subtasks:** 🧪 Property · 🎯 Activity · 🧩 Featurization · 🗺️ Projection · 🔍 Similarity · 🎨 Generative
 
 ## AI agents and foundation models for science
 
@@ -26,14 +27,14 @@
 
 ## Potential models for the Ersilia Model Hub
 
-- [Zhou et al., *Nucleic Acids Res*, 2026-05-19](https://doi.org/10.1093/nar/gkag478) 🤖💻 — **DeepCYP: an integrated deep learning web server for "pathway–site–product" prediction of CYP-mediated metabolism.** Cao group (Central South University); CYP prediction is a known Hub gap and DeepCYP fits the NAR-web-server incorporation pattern the Hub already uses for ADMET-style endpoints. · _Property prediction_
-- [Rath et al., *J Cheminform*, 2026-05-15](https://doi.org/10.1186/s13321-026-01207-4) 🤖💻 — **Deep learning for assay nuisance compound detection using a gated co-attention graph embedding.** Combines representations into a PAINS-style filter — drop-in candidate for the Hub's pre-screening layer in antimalarial and AMR cascades. · _Property prediction_
-- [McFee et al., *bioRxiv*, 2026-05-20](https://www.biorxiv.org/content/10.64898/2026.05.04.722713v2) 🤖 — **SLiMNet: a deep learning model to detect short linear motifs using protein language models.** SLiMs are the recognition codes used by E3 ligases — directly load-bearing for the E3-target prioritisation step in *glueAI*. · _Activity prediction_
-- [Jimenez-Castro et al., *bioRxiv*, 2026-05-15](https://www.biorxiv.org/content/10.64898/2026.02.27.708593v2) 🤖 — **Explainable AI for end-to-end pathogen target discovery and molecular design.** An interpretable -omics-to-target ML pipeline — maps cleanly to the *E-AMR-CC* WP1B target-prioritisation workplan and adds an explainability layer the current Ersilia pipeline lacks. · _Activity prediction_
-- [Wadell et al., *arXiv*, 2025-10-20](https://arxiv.org/abs/2510.18900) 🤖💻 — **Foundation models for discovery and exploration in chemical space (MIST).** CMU-led open molecular foundation model benchmarked on 400+ property-prediction tasks — credible drop-in featurizer or baseline for the Ersilia Model Hub. · _Featurization_
-- [Shin et al., *J Cheminform*, 2026-05-14](https://doi.org/10.1186/s13321-026-01224-3) 🤖💻 — **PL-PatchSurfer3: improved structure-based virtual screening using patch-based features.** A free, scalable docking-surrogate worth benchmarking against the Gentile-style deep-docking pipeline planned for *E-AMR-CC*. · _Similarity search_
-- [Park et al., *J Cheminform*, 2026-05-19](https://doi.org/10.1186/s13321-026-01221-6) 🤖💻 — **Novel molecular design via a scaffold-aware transformer with multi-scale attention.** Scaffold-conditioned generation directly matches the hit-to-lead need around MMV1794 in the antimalarial pyrazole program. · _Generative_
+- [Zhou et al., *Nucleic Acids Res*, 2026-05-19](https://doi.org/10.1093/nar/gkag478) 🤖💻 — **DeepCYP: an integrated deep learning web server for "pathway–site–product" prediction of CYP-mediated metabolism.** Cao group (Central South University); CYP prediction is a known Hub gap and DeepCYP fits the NAR-web-server incorporation pattern the Hub already uses for ADMET-style endpoints. · 🧪 _Property prediction_
+- [Rath et al., *J Cheminform*, 2026-05-15](https://doi.org/10.1186/s13321-026-01207-4) 🤖💻 — **Deep learning for assay nuisance compound detection using a gated co-attention graph embedding.** Combines representations into a PAINS-style filter — drop-in candidate for the Hub's pre-screening layer in antimalarial and AMR cascades. · 🧪 _Property prediction_
+- [McFee et al., *bioRxiv*, 2026-05-20](https://www.biorxiv.org/content/10.64898/2026.05.04.722713v2) 🤖 — **SLiMNet: a deep learning model to detect short linear motifs using protein language models.** SLiMs are the recognition codes used by E3 ligases — directly load-bearing for the E3-target prioritisation step in *glueAI*. · 🎯 _Activity prediction_
+- [Jimenez-Castro et al., *bioRxiv*, 2026-05-15](https://www.biorxiv.org/content/10.64898/2026.02.27.708593v2) 🤖 — **Explainable AI for end-to-end pathogen target discovery and molecular design.** An interpretable -omics-to-target ML pipeline — maps cleanly to the *E-AMR-CC* WP1B target-prioritisation workplan and adds an explainability layer the current Ersilia pipeline lacks. · 🎯 _Activity prediction_
+- [Wadell et al., *arXiv*, 2025-10-20](https://arxiv.org/abs/2510.18900) 🤖💻 — **Foundation models for discovery and exploration in chemical space (MIST).** CMU-led open molecular foundation model benchmarked on 400+ property-prediction tasks — credible drop-in featurizer or baseline for the Ersilia Model Hub. · 🧩 _Featurization_
+- [Shin et al., *J Cheminform*, 2026-05-14](https://doi.org/10.1186/s13321-026-01224-3) 🤖💻 — **PL-PatchSurfer3: improved structure-based virtual screening using patch-based features.** A free, scalable docking-surrogate worth benchmarking against the Gentile-style deep-docking pipeline planned for *E-AMR-CC*. · 🔍 _Similarity search_
+- [Park et al., *J Cheminform*, 2026-05-19](https://doi.org/10.1186/s13321-026-01221-6) 🤖💻 — **Novel molecular design via a scaffold-aware transformer with multi-scale attention.** Scaffold-conditioned generation directly matches the hit-to-lead need around MMV1794 in the antimalarial pyrazole program. · 🎨 _Generative_
 
 ## Interesting datasets for Ersilia modelling
 
-- [Molaei et al., *Sci Rep*, 2026-05-18](https://doi.org/10.1038/s41598-026-53762-3) 🌍🗃️ — **Synthesis and anti-leishmanial profile of novel thiazolidine-4-one derivatives.** Ardabil University of Medical Sciences (Iran); small but Hub-loadable IC50 dataset against *Leishmania* promastigotes and amastigotes — candidate seed for a *Leishmania* activity model trained beyond the published series. · _Activity dataset_
+- [Molaei et al., *Sci Rep*, 2026-05-18](https://doi.org/10.1038/s41598-026-53762-3) 🌍🗃️ — **Synthesis and anti-leishmanial profile of novel thiazolidine-4-one derivatives.** Ardabil University of Medical Sciences (Iran); small but Hub-loadable IC50 dataset against *Leishmania* promastigotes and amastigotes — candidate seed for a *Leishmania* activity model trained beyond the published series. · 🎯 _Activity dataset_
