@@ -1,0 +1,65 @@
+# Ersilia Literature Digest — Week of 2026-05-21
+
+_Covers the 7 days ending 2026-05-21. Curated for the Ersilia Open Source Initiative._
+_Sources scanned: bioRxiv, Europe PMC, Slack, Alerts and Newsletters. Items: 17 total._
+
+**Connectors:** bioRxiv 🟢 · Europe PMC 🟢 · Slack 🟢 · Alerts and Newsletters 🟢
+
+---
+
+## AI agents and foundation models for science
+
+_A rare three-papers-in-one-day on agentic AI for science (`Nature`, 2026-05-19), plus a freshly-shared open chemical foundation model._
+
+- [Ghareeb et al., *Nature*, 2026](https://www.nature.com/articles/s41586-026-10652-y) ⭐ — **A multi-agent system for automating scientific discovery.** FutureHouse's end-to-end agentic system that proposes hypotheses, runs experiments, and reports results across chemistry and biology — sets the bar for what an "Ersilia agent" on top of the Hub should look like. · _shared in #literature by Miquel_
+- [Gottweis et al., *Nature*, 2026](https://www.nature.com/articles/s41586-026-10644-y) ⭐ — **Accelerating scientific discovery with Co-Scientist.** Google DeepMind's multi-agent research assistant, validated on drug repurposing and AMR case studies that overlap `E-AMR-CC` directly — worth dissecting which tools they used and whether the workflow can be reproduced openly. · _shared in #literature by Miquel_
+- [Aygün et al., *Nature*, 2026](https://www.nature.com/articles/s41586-026-10658-6) ⭐ — **An AI system to help scientists write expert-level empirical software.** DeepMind agent that writes, runs, and debugs scientific code end-to-end — directly relevant to the "autonomous lab unit" pitch in the O'Shaughnessy application. · _shared in #literature by Miquel_
+- [Wadell et al., *arXiv*, 2025](https://arxiv.org/abs/2510.18900) 🤖 — **Foundation models for discovery and exploration in chemical space (MIST).** CMU-led open molecular foundation model benchmarked on 400+ property-prediction tasks — credible drop-in featurizer/baseline for the Hub. · _shared in #literature by Miquel_
+
+## AI/ML methods for drug discovery
+
+_A solid week of method papers in `Journal of Cheminformatics` and adjacent venues, plus a load-bearing cofolding-evaluation paper that directly tests the tools `E-AMR-CC` and AI2050 commit to._
+
+- [Škrinjar et al., *Nat Struct Mol Biol*, 2026](https://doi.org/10.1038/s41594-026-01797-5) — **Evaluating generalization in protein–ligand cofolding methods.** Benchmarks AlphaFold-Multimer, RoseTTAFold-AllAtom, Boltz, and Chai-1 on out-of-distribution complexes and shows where headline accuracy hides — read before scaling Boltz-2 to billions in `E-AMR-CC`. · _shared in #literature by Miquel_
+- [Rath et al., *J Cheminform*, 2026](https://doi.org/10.1186/s13321-026-01207-4) 🤖 — **Deep learning for assay nuisance compound detection using a gated co-attention graph embedding.** Gates Medical Research Institute / Texas A&M; combines representations into a credible PAINS-style filter — drop-in candidate for the Hub's pre-screening layer in our antimalarial and AMR cascades.
+- [Shin et al., *J Cheminform*, 2026](https://doi.org/10.1186/s13321-026-01224-3) 🤖 — **PL-PatchSurfer3: improved structure-based virtual screening using patch-based features.** Korea University / Purdue; a free, scalable docking-surrogate worth benchmarking against the Gentile-style deep-docking pipeline planned for `E-AMR-CC`.
+- [Zhou et al., *Nucleic Acids Res*, 2026](https://doi.org/10.1093/nar/gkag478) 🤖 — **DeepCYP: an integrated deep learning web server for the holistic "pathway–site–product" prediction of CYP-mediated metabolism.** Cao group (Central South University); CYP prediction is a known Hub gap and DeepCYP is a serious incorporation candidate.
+- [Park et al., *J Cheminform*, 2026](https://doi.org/10.1186/s13321-026-01221-6) 🤖 — **Novel molecular design via a scaffold-aware transformer with multi-scale attention.** Scaffold-conditioned generation directly matches our needs around `MMV1794` in the NIH R21 antimalarial work.
+- [McFee et al., *bioRxiv*, 2026](https://www.biorxiv.org/content/10.64898/2026.05.04.722713v2) 🤖 — **SLiMNet: a deep learning model to detect short linear motifs using protein language models.** Toronto; SLiMs are the recognition codes used by E3 ligases — directly load-bearing for the `glueAI` E3-target prioritisation step.
+
+## Antibiotic and antimicrobial discovery
+
+_A new MBL-fold class characterised by an Indian team, plus two structural-biology papers on Gram-negative envelope / biofilm targets relevant to the `E-AMR-CC` target list._
+
+- [Barman et al., *ACS Infect Dis*, 2026](https://doi.org/10.1021/acsinfecdis.5c01093) 🌍 — **A divergent MBL-fold metallo-hydrolase (Kmh-1) from Klebsiella pneumoniae.** IIT-affiliated structural/enzymatic characterisation of a new β-lactamase fold — add Kmh-1 to the `E-AMR-CC` Klebsiella target panel.
+- [Brahma et al., *bioRxiv*, 2026](https://www.biorxiv.org/content/10.64898/2026.05.18.725845v1) 🌍 — **Therapeutic relevance of NLPA lipoprotein to combat biofilm-associated infection in Acinetobacter.** NIPER-led identification of NLPA as a biofilm target with small-molecule leads — broadens the `E-AMR-CC` and H3D AMR target panel into persister/biofilm biology.
+- [Matsumoto et al., *bioRxiv*, 2026](https://www.biorxiv.org/content/10.64898/2026.05.15.725309v1) — **Structures of the Pseudomonas aeruginosa MlaC–MlaD complexes.** Yamagata U cryo-EM data illuminating the phospholipid retrograde-transport machinery of Gram-negative outer membranes — substrate for a future deep-docking campaign.
+
+## NTDs and global health
+
+_LMIC-led NTD chemistry across leishmaniasis, antimalarial repurposing, and natural-product PDE4B inhibitors, plus an explainable-AI pipeline for pathogen target discovery._
+
+- [Molaei et al., *Sci Rep*, 2026](https://doi.org/10.1038/s41598-026-53762-3) 🌍 — **Synthesis and anti-leishmanial profile of novel thiazolidine-4-one derivatives.** Ardabil University of Medical Sciences (Iran); small but Hub-loadable IC50 dataset against *Leishmania* promastigotes and amastigotes.
+- [Parveen et al., *bioRxiv*, 2026](https://www.biorxiv.org/content/10.64898/2026.05.17.725751v1) 🌍 — **Computational drug repurposing identifies Artemisinin and Mebendazole as potential inhibitors.** University of Allahabad network-pharmacology screen; a check against our own NIH R21 antimalarial pyrazole / partner-drug ideas.
+- [Oni et al., *bioRxiv*, 2026](https://www.biorxiv.org/content/10.64898/2026.05.16.725619v1) 🌍 — **Computational design of novel selective PDE4B inhibitors from natural products.** University of Ilorin (Nigeria) natural-product virtual screen — exactly the kind of African-led NP pipeline that should be visible inside the Hub.
+- [Jimenez-Castro et al., *bioRxiv*, 2026](https://www.biorxiv.org/content/10.64898/2026.02.27.708593v2) 🤖 — **Explainable AI for end-to-end pathogen target discovery and molecular design.** An interpretable -omics-to-target ML pipeline; maps cleanly to the `E-AMR-CC` WP1B target-prioritisation workplan and adds the explainability layer our current pipeline lacks.
+
+---
+
+**Methodology notes**
+
+- Sources scanned: bioRxiv (191 items), Europe PMC (193 items), Slack `#literature` (6 messages → 6 normalised items), Gmail Scholar alerts (1 thread → 1 item).
+- Date range: 2026-05-14 → 2026-05-21.
+- Items considered: 391 raw → 390 deduped (1 cross-source duplicate) → 50 top-ranked → 17 selected.
+- Code-availability detection (💻 marker) is conservative — only applied when the paper text or metadata explicitly links a public repo. Several method papers in this digest probably do release code; verify in v2 by parsing abstracts for `github.com` mentions.
+- Known gaps:
+  - Nature article pages return HTTP 403 to anonymous fetches; titles/authors were resolved via Crossref instead. The source catalogue should formalise Crossref as a fallback for paywalled venues.
+  - Slack/Gmail items are surfaced by curation rather than ranking score — the ranker does not yet apply a "team-shared" bonus. Known v2 follow-up.
+  - Newsletter senders matched (Substack growth/policy) were off-scope. Real curated newsletter signal (Decoding Bio, Asimov Press, Pat Walters, Owl Posting) was not in this window.
+  - LinkedIn, chemRxiv direct API, Semantic Scholar, named-journal RSS, GitHub topic search, Hugging Face Hub: deferred to Phase B/C.
+
+**Suggested follow-ups for the Ersilia team**
+
+- **Read the three "AI agents for science" Nature papers together** (Ghareeb/Rodriques, Gottweis/Natarajan, Aygün/Brenner) and write one team memo on what each implies for an Ersilia agent layer on top of the Hub.
+- **Benchmark MIST** (Wadell/Viswanathan) against current Hub featurizers on the H3D antimalarial and `E-AMR-CC` Klebsiella endpoints.
+- **Add Kmh-1** (Barman et al.) to the `E-AMR-CC` Klebsiella target list and run the deep-docking pipeline on it.
