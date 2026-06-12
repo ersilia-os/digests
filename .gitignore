@@ -1,0 +1,12 @@
+# Jekyll build output and caches
+_site/
+.jekyll-cache/
+.jekyll-metadata
+website/.jekyll-cache/
+
+# Digests are staged into the site source at build time (see .github/workflows/pages.yml)
+website/literature/
+
+# Bundler
+Gemfile.lock
+vendor/

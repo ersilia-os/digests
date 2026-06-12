@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+  <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+</head>
+<body>
+  <header>
+    <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
+    <p>{{ site.description }}</p>
+  </header>
+  <main>
+    {{ content }}
+  </main>
+  <footer>
+    <p><a href="https://github.com/ersilia-os/digests">Source on GitHub</a> · Ersilia Open Source Initiative</p>
+  </footer>
+</body>
+</html>
