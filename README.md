@@ -1,6 +1,8 @@
 # Periodic Ersilia digests
 Digests of relevance to the Ersilia Open Source Initiative
 
+📖 **Read them on the web: [ersilia-os.github.io/digests](https://ersilia-os.github.io/digests/)**
+
 ## Literature digests
 
 - [2026-06-11](literature/26-06-11-literature-digest.md)
