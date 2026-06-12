@@ -3,19 +3,47 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
-  <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+  <title>{% if page.title and page.title != site.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
 </head>
 <body>
-  <header>
-    <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
-    <p>{{ site.description }}</p>
+  {% assign digests = site.pages | where_exp: "p", "p.path contains 'literature/'" | sort: "path" | reverse %}
+
+  <input type="checkbox" id="nav-toggle" class="nav-toggle">
+
+  <header class="topbar">
+    <label for="nav-toggle" class="menu-label" aria-label="Toggle navigation">☰</label>
+    <a href="{{ '/' | relative_url }}" class="topbar-brand">{{ site.title }}</a>
   </header>
-  <main>
-    {{ content }}
-  </main>
-  <footer>
-    <p><a href="https://github.com/ersilia-os/digests">Source on GitHub</a> · Ersilia Open Source Initiative</p>
-  </footer>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <a href="{{ '/' | relative_url }}" class="brand">{{ site.title }}</a>
+      <p class="tagline">{{ site.description }}</p>
+      <nav>
+        <p class="nav-group-title">Literature digests</p>
+        <ul>
+          {% for d in digests %}
+          <li>
+            <a href="{{ d.url | relative_url }}"{% if page.url == d.url %} class="active"{% endif %}>
+              {{ d.name | replace: '-literature-digest.md', '' | prepend: '20' }}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </aside>
+
+    <main>
+      <article class="content">
+        {{ content }}
+      </article>
+    </main>
+  </div>
+
+  <label for="nav-toggle" class="nav-backdrop" aria-hidden="true"></label>
 </body>
 </html>

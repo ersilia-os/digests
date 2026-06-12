@@ -1,8 +1,12 @@
 # Jekyll build output and caches
 _site/
+_site_preview/
 .jekyll-cache/
 .jekyll-metadata
 website/.jekyll-cache/
+
+# Local preview override (sets an empty baseurl for `localhost` previews)
+website/_config_local.yml
 
 # Digests are staged into the site source at build time (see .github/workflows/pages.yml)
 website/literature/
