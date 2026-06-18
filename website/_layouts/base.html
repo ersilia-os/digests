@@ -11,6 +11,7 @@
 </head>
 <body>
   {% assign digests = site.pages | where_exp: "p", "p.path contains 'literature/'" | sort: "path" | reverse %}
+  {% assign ghdigests = site.pages | where_exp: "p", "p.path contains 'github/'" | sort: "path" | reverse %}
 
   <input type="checkbox" id="nav-toggle" class="nav-toggle">
 
@@ -24,7 +25,7 @@
       <a href="{{ '/' | relative_url }}" class="brand">{{ site.title }}</a>
       <p class="tagline">{{ site.description }}</p>
       <nav>
-        <p class="nav-group-title">Literature digests</p>
+        <p class="nav-group-title"><span class="nav-dot is-lit"></span>Literature digests</p>
         <ul>
           {% for d in digests %}
           <li>
@@ -34,6 +35,19 @@
           </li>
           {% endfor %}
         </ul>
+
+        {% if ghdigests.size > 0 %}
+        <p class="nav-group-title"><span class="nav-dot is-gh"></span>GitHub digests</p>
+        <ul>
+          {% for d in ghdigests %}
+          <li>
+            <a href="{{ d.url | relative_url }}"{% if page.url == d.url %} class="active"{% endif %}>
+              {{ d.name | replace: '-github-digest.md', '' | prepend: '20' }}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
       </nav>
     </aside>
 

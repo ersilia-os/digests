@@ -10,6 +10,7 @@ website/_config_local.yml
 
 # Digests are staged into the site source at build time (see .github/workflows/pages.yml)
 website/literature/
+website/github/
 
 # Bundler
 Gemfile.lock

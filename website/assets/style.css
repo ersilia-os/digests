@@ -202,6 +202,13 @@ main {
 :root {
   --cal-cell: 13px;
   --cal-gap: 3px;
+  /* Ersilia brand palette — digest type encoding */
+  --digest-lit: #bee6b4;          /* mint  — literature */
+  --digest-lit-hover: #a4d897;
+  --digest-gh: #faa08c;           /* orange — github */
+  --digest-gh-hover: #f5856c;
+  --digest-both: #50285a;         /* plum  — both on the same day */
+  --digest-both-hover: #6e3a7d;
 }
 
 .calendar {
@@ -252,16 +259,37 @@ main {
 .cal-cell.is-today { box-shadow: inset 0 0 0 1.5px var(--accent); }
 
 /* a day that has a published digest */
-a.cal-cell.has-digest {
-  background: var(--accent);
-  box-shadow: 0 0 0 1px var(--accent), 0 1px 3px rgba(80,40,90,0.30);
+a.cal-cell.has-lit,
+a.cal-cell.has-gh,
+a.cal-cell.has-both {
   transition: transform .1s ease, box-shadow .1s ease;
 }
-a.cal-cell.has-digest:hover {
-  background: var(--accent-hover);
-  transform: scale(1.35);
-  z-index: 2;
-  box-shadow: 0 0 0 1px var(--accent-hover), 0 3px 8px rgba(80,40,90,0.45);
+a.cal-cell.has-lit {
+  background: var(--digest-lit);
+  box-shadow: 0 0 0 1px rgba(80,40,90,0.18), 0 1px 3px rgba(80,40,90,0.20);
+}
+a.cal-cell.has-lit:hover {
+  background: var(--digest-lit-hover);
+  transform: scale(1.35); z-index: 2;
+  box-shadow: 0 0 0 1px rgba(80,40,90,0.35), 0 3px 8px rgba(80,40,90,0.35);
+}
+a.cal-cell.has-gh {
+  background: var(--digest-gh);
+  box-shadow: 0 0 0 1px rgba(80,40,90,0.18), 0 1px 3px rgba(80,40,90,0.20);
+}
+a.cal-cell.has-gh:hover {
+  background: var(--digest-gh-hover);
+  transform: scale(1.35); z-index: 2;
+  box-shadow: 0 0 0 1px rgba(80,40,90,0.35), 0 3px 8px rgba(80,40,90,0.35);
+}
+a.cal-cell.has-both {
+  background: var(--digest-both);
+  box-shadow: 0 0 0 1px var(--digest-both), 0 1px 3px rgba(80,40,90,0.30);
+}
+a.cal-cell.has-both:hover {
+  background: var(--digest-both-hover);
+  transform: scale(1.35); z-index: 2;
+  box-shadow: 0 0 0 1px var(--digest-both-hover), 0 3px 8px rgba(80,40,90,0.45);
 }
 
 .cal-legend {
@@ -275,7 +303,19 @@ a.cal-cell.has-digest:hover {
 .cal-legend .swatch {
   display: inline-block;
   width: 11px; height: 11px; border-radius: 3px; vertical-align: -1px;
+  box-shadow: inset 0 0 0 1px rgba(80,40,90,0.18);
 }
-.cal-legend .swatch.empty { background: var(--bg-soft); }
-.cal-legend .swatch.filled { background: var(--accent); }
+.cal-legend .swatch.empty { background: var(--bg-soft); box-shadow: none; }
+.cal-legend .swatch.lit { background: var(--digest-lit); }
+.cal-legend .swatch.gh { background: var(--digest-gh); }
+.cal-legend .swatch.both { background: var(--digest-both); }
 .cal-legend .sep { color: var(--border); }
+
+/* sidebar nav-group dots — match the calendar encoding */
+.nav-dot {
+  display: inline-block;
+  width: 8px; height: 8px; border-radius: 2px;
+  margin-right: 7px; vertical-align: 0;
+}
+.nav-dot.is-lit { background: var(--digest-lit); }
+.nav-dot.is-gh { background: var(--digest-gh); }

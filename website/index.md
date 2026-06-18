@@ -10,21 +10,40 @@ Periodic digests of literature and activity relevant to the
 antimicrobial and antibiotic research, neglected diseases, and open science for
 global health.
 
-{% comment %} ---------- build the digest lookup + figure out the year ---------- {% endcomment %}
-{% assign digests = site.pages | where_exp: "p", "p.path contains 'literature/'" | sort: "path" %}
-{% assign latest = digests | last %}
-{% assign year = latest.name | slice: 0, 2 | prepend: '20' %}
+{% comment %} ---------- gather both digest families ---------- {% endcomment %}
+{% assign litdigests = site.pages | where_exp: "p", "p.path contains 'literature/'" | sort: "path" %}
+{% assign ghdigests = site.pages | where_exp: "p", "p.path contains 'github/'" | sort: "path" %}
 
-{% assign dkeys = "" %}
-{% assign durls = "" %}
-{% for d in digests %}
-  {% assign stub = d.name | replace: '-literature-digest.md', '' %}
-  {% assign full = stub | prepend: '20' %}
-  {% assign dkeys = dkeys | append: full | append: "," %}
-  {% assign durls = durls | append: d.url | append: "," %}
+{% comment %} ---------- figure out the year from the most recent digest of either kind ---------- {% endcomment %}
+{% assign alldigests = litdigests | concat: ghdigests | sort: "name" %}
+{% assign latest = alldigests | last %}
+{% if latest %}
+  {% assign year = latest.name | slice: 0, 2 | prepend: '20' %}
+{% else %}
+  {% assign year = site.time | date: "%Y" %}
+{% endif %}
+
+{% comment %} ---------- literature: date -> url lookup ---------- {% endcomment %}
+{% assign litkeys = "" %}
+{% assign liturls = "" %}
+{% for d in litdigests %}
+  {% assign full = d.name | replace: '-literature-digest.md', '' | prepend: '20' %}
+  {% assign litkeys = litkeys | append: full | append: "," %}
+  {% assign liturls = liturls | append: d.url | append: "," %}
 {% endfor %}
-{% assign dkeys = dkeys | split: "," %}
-{% assign durls = durls | split: "," %}
+{% assign litkeys = litkeys | split: "," %}
+{% assign liturls = liturls | split: "," %}
+
+{% comment %} ---------- github: date -> url lookup ---------- {% endcomment %}
+{% assign ghkeys = "" %}
+{% assign ghurls = "" %}
+{% for d in ghdigests %}
+  {% assign full = d.name | replace: '-github-digest.md', '' | prepend: '20' %}
+  {% assign ghkeys = ghkeys | append: full | append: "," %}
+  {% assign ghurls = ghurls | append: d.url | append: "," %}
+{% endfor %}
+{% assign ghkeys = ghkeys | split: "," %}
+{% assign ghurls = ghurls | split: "," %}
 
 {% comment %} ---------- date geometry for the grid ---------- {% endcomment %}
 {% assign jan1 = year | append: '-01-01' %}
@@ -57,10 +76,18 @@ global health.
           {% assign ts = base_unix | plus: off %}
           {% assign ds = ts | date: "%Y-%m-%d" %}
           {% assign nice = ts | date: "%b %-d, %Y" %}
-          {% if dkeys contains ds %}
-            {% assign url = "" %}
-            {% for k in dkeys %}{% if k == ds %}{% assign url = durls[forloop.index0] %}{% endif %}{% endfor %}
-            <a class="cal-cell has-digest" href="{{ url | relative_url }}" title="Digest — {{ nice }}" aria-label="Digest published {{ nice }}"></a>
+
+          {% assign liturl = "" %}
+          {% for k in litkeys %}{% if k == ds %}{% assign liturl = liturls[forloop.index0] %}{% endif %}{% endfor %}
+          {% assign ghurl = "" %}
+          {% for k in ghkeys %}{% if k == ds %}{% assign ghurl = ghurls[forloop.index0] %}{% endif %}{% endfor %}
+
+          {% if liturl != "" and ghurl != "" %}
+            <a class="cal-cell has-both" href="{{ liturl | relative_url }}" title="Literature + GitHub digests — {{ nice }} (click for the literature digest)" aria-label="Literature and GitHub digests published {{ nice }}"></a>
+          {% elsif liturl != "" %}
+            <a class="cal-cell has-lit" href="{{ liturl | relative_url }}" title="Literature digest — {{ nice }}" aria-label="Literature digest published {{ nice }}"></a>
+          {% elsif ghurl != "" %}
+            <a class="cal-cell has-gh" href="{{ ghurl | relative_url }}" title="GitHub digest — {{ nice }}" aria-label="GitHub digest published {{ nice }}"></a>
           {% elsif ts > today_noon %}
             <span class="cal-cell is-future" title="{{ nice }}"></span>
           {% elsif ts == today_noon %}
@@ -74,17 +101,21 @@ global health.
     </div>
   </div>
   <div class="cal-legend">
-    <span class="swatch empty"></span> no digest
+    <span class="swatch lit"></span> literature
     <span class="sep">·</span>
-    <span class="swatch filled"></span> digest published — click to read
+    <span class="swatch gh"></span> GitHub
+    <span class="sep">·</span>
+    <span class="swatch both"></span> both
+    <span class="sep">·</span>
+    <span class="swatch empty"></span> no digest
   </div>
 </div>
 
 ## Recent literature digests
 
-{% assign recent = digests | reverse %}
+{% assign recentlit = litdigests | reverse %}
 <ul class="card-list">
-{% for d in recent limit: 8 %}
+{% for d in recentlit limit: 8 %}
   <li>
     <a href="{{ d.url | relative_url }}">
       <span>Week of {{ d.name | replace: '-literature-digest.md', '' | prepend: '20' }}</span>
@@ -93,3 +124,19 @@ global health.
   </li>
 {% endfor %}
 </ul>
+
+{% if ghdigests.size > 0 %}
+## Recent GitHub digests
+
+{% assign recentgh = ghdigests | reverse %}
+<ul class="card-list">
+{% for d in recentgh limit: 8 %}
+  <li>
+    <a href="{{ d.url | relative_url }}">
+      <span>Week of {{ d.name | replace: '-github-digest.md', '' | prepend: '20' }}</span>
+      <span class="arrow">→</span>
+    </a>
+  </li>
+{% endfor %}
+</ul>
+{% endif %}

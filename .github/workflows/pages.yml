@@ -24,7 +24,9 @@ jobs:
       # The digests live at the repo root; stage them into the Jekyll source
       # so the repository root stays clean.
       - name: Stage digests into the site source
-        run: cp -r literature website/literature
+        run: |
+          cp -r literature website/literature
+          cp -r github website/github
 
       - uses: ruby/setup-ruby@v1
         with:
