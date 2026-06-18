@@ -14,6 +14,7 @@ Digests of relevance to the Ersilia Open Source Initiative
 
 ## GitHub digests
 
+- [2026-06-18](github/26-06-18-github-digest.md)
 GitHub digests live in [`github/`](github/) and follow the same format and naming
 convention as the literature digests (`YY-MM-DD-github-digest.md`). They are listed
 here and on the website as they are published.
