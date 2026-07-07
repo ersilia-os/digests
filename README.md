@@ -15,6 +15,7 @@ Digests of relevance to the Ersilia Open Source Initiative
 
 ## GitHub digests
 
+- [2026-07-07](github/26-07-07-github-digest.md)
 - [2026-06-26](github/26-06-26-github-digest.md)
 - [2026-06-18](github/26-06-18-github-digest.md)
 GitHub digests live in [`github/`](github/) and follow the same format and naming
