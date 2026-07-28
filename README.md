@@ -5,6 +5,7 @@ Digests of relevance to the Ersilia Open Source Initiative
 
 ## Literature digests
 
+- [2026-07-29](literature/26-07-29-literature-digest.md)
 - [2026-07-15](literature/26-07-15-literature-digest.md)
 - [2026-07-07](literature/26-07-07-literature-digest.md)
 - [2026-06-24](literature/26-06-24-literature-digest.md)
