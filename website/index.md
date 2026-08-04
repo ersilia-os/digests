@@ -15,8 +15,8 @@ global health.
 {% assign ghdigests = site.pages | where_exp: "p", "p.path contains 'github/'" | sort: "path" %}
 {% assign eventdigests = site.pages | where_exp: "p", "p.path contains 'events/'" | sort: "path" %}
 
-{% comment %} ---------- figure out the year from the most recent digest of either kind ---------- {% endcomment %}
-{% assign alldigests = litdigests | concat: ghdigests | sort: "name" %}
+{% comment %} ---------- figure out the year from the most recent digest/report of any kind ---------- {% endcomment %}
+{% assign alldigests = litdigests | concat: ghdigests | concat: eventdigests | sort: "name" %}
 {% assign latest = alldigests | last %}
 {% if latest %}
   {% assign year = latest.name | slice: 0, 2 | prepend: '20' %}
