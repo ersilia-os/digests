@@ -160,7 +160,16 @@ main {
    it matters. This is the only digest family currently emitting tables —
    revisit these widths if that changes. */
 .content table {
-  width: 100%;
+  /* Break out of .content's 720px prose column — a 10-column table needs more
+     room than a paragraph does. `.content` doesn't clip overflow, so a wider
+     table just extends into main's empty space to the right. Viewport-relative
+     units are required here (not a percentage): a percentage width can never
+     exceed the parent's own resolved box (already capped at 720px), so this
+     has to be computed independently of .content's width. 128px = main's own
+     left+right padding (52px 64px 100px). Capped at 1100px so it doesn't get
+     absurdly wide on very large monitors. */
+  width: calc(100vw - var(--sidebar-w) - 128px);
+  max-width: 1100px;
   table-layout: fixed;
   border-collapse: collapse;
   font-size: 0.78rem;
@@ -237,6 +246,11 @@ main {
 
   main { padding: 28px 22px 72px; }
   .content h1 { font-size: 1.4rem; }
+
+  /* No sidebar taking horizontal space in mobile's off-canvas layout, so the
+     desktop breakout calc (which subtracts --sidebar-w) doesn't apply — just
+     fill .content's own (already full-width) box. */
+  .content table { width: 100%; max-width: 100%; }
 }
 
 /* ---------- year calendar (digest index) ---------- */
