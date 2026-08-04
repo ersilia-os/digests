@@ -20,6 +20,7 @@
 ## Africa
 
 ### Science
+
 | Event | Markers | Dates | Location | Format · Type | Cost | Bursary | Priority | Engagement | Why it matters (priority · action) |
 |---|---|---|---|---|---|---|---|---|---|
 | [6th H3D Symposium](https://h3d.uct.ac.za/events/6th-h3d-symposium) | — | 2026-10-13 → 2026-10-16 | Hermanus, South Africa | In-person · Symposium | Unknown | Unknown | Medium | Scout partnership with H3D Foundation | Priority 2/4: Africa's leading drug-discovery symposium (H3D) — scout for NTD-partnership and therapeutic-pipeline intel. |
@@ -27,6 +28,7 @@
 ## Europe
 
 ### Science
+
 | Event | Markers | Dates | Location | Format · Type | Cost | Bursary | Priority | Engagement | Why it matters (priority · action) |
 |---|---|---|---|---|---|---|---|---|---|
 | [9th RSC-CICAG/RSC-BMCS Artificial Intelligence in Chemistry Symposium](https://www.rsc.org/events/find-an-event/9th-artificial-intelligence-in-chemistry-symposium) | ⭐💻🗓️ | 2026-09-02 → 2026-09-04 | Cambridge, United Kingdom | Hybrid · Symposium | £270–£510 in-person (member/student discounts); £165–£335 online | Unknown | High | Present Model Hub work; scout AI4Chem talks | Priority 1: RSC's flagship AI-in-chemistry symposium — attend to present Model Hub work and scout emerging AI4Chem methods. |
@@ -40,6 +42,7 @@
 | [ISMB/ECCB 2027](https://www.iscb.org/ismbeccb2027/home) | ⭐💻 | 2027-07-18 → 2027-07-22 | Copenhagen, Denmark | Hybrid · Conference | Unknown | Unknown | High | Present Model Hub work at computational biology's flagship conference | Priority 1: ISMB/ECCB is computational biology's premier annual conference — attend to present Model Hub work. |
 
 ### Philanthropy
+
 | Event | Markers | Dates | Location | Format · Type | Cost | Bursary | Priority | Engagement | Why it matters (priority · action) |
 |---|---|---|---|---|---|---|---|---|---|
 | [World Health Summit 2026](https://www.worldhealthsummit.org/events/annual-whs/2026) | — | 2026-10-11 → 2026-10-13 | Berlin, Germany | Hybrid · Conference | Unknown | Unknown | Medium | Meet global-health funders & AMR-policy contacts | Priority 2/4: major global-health policy convening — partner to build funder and AMR-policy relationships. |
@@ -48,6 +51,7 @@
 ## Asia
 
 ### Science
+
 | Event | Markers | Dates | Location | Format · Type | Cost | Bursary | Priority | Engagement | Why it matters (priority · action) |
 |---|---|---|---|---|---|---|---|---|---|
 | [InCoB/ISCB-APAC 2026 (25th International Conference on Bioinformatics)](https://incob.apbionet.org/incob2026/) | 💻💰 | 2026-09-14 → 2026-09-17 | Penang, Malaysia | In-person · Conference | Unknown | Conference Fellowship programme (amount unspecified on official page) | Medium | Scout Asia-Pacific computational-biology methods & partners | Priority 1: Asia-Pacific's flagship computational-biology venue — scout for open-methods partnerships and talent. |
@@ -55,6 +59,7 @@
 ## North America
 
 ### Science
+
 | Event | Markers | Dates | Location | Format · Type | Cost | Bursary | Priority | Engagement | Why it matters (priority · action) |
 |---|---|---|---|---|---|---|---|---|---|
 | [ACS Fall 2026 National Meeting (CINF Chemical Information Division)](https://www.acscinf.org/meetingsevents/acs-fall-meeting-2026) † | ⭐💻 | 2026-08-23 → 2026-08-27 | Chicago, United States | In-person · Conference | Unknown | Unknown | High | Present Model Hub work in the CINF cheminformatics track | Priority 1: ACS's Chemical Information Division (CINF) track — squarely Model Hub cheminformatics territory. |
@@ -67,6 +72,7 @@
 | [Drug Discovery Chemistry 2027 (CHI)](https://www.drugdiscoverychemistry.com/) | 💻 | 2027-04-19 → 2027-04-22 | San Diego, United States | In-person · Conference | Unknown | Unknown | Medium | Scout applied drug-discovery-chemistry trends; industry contacts | Priority 1: CHI's flagship applied drug-discovery-chemistry conference, named in Ersilia's own priority-1 fit-alone criterion — scout for chemical-space/ML tooling trends. |
 
 ## Registration closed — event still upcoming, but you can no longer register
+
 | Event | Markers | Dates | Location | Format · Type | Cost | Bursary | Priority | Engagement | Why it matters (priority · action) |
 |---|---|---|---|---|---|---|---|---|---|
 | [ELLIS Summer School 2026 — Trustworthy & Responsible AI in Drug Discovery (TRAID26)](https://pharmasciencehub.com/summerschools/traid26/) | ⭐🎓💻💰 | 2026-08-24 → 2026-08-28 | Saarbrücken, Germany | In-person · Summer school | €250 (student fee) | ELIZA mobility funds (travel/accommodation/registration) for PhD students co-supervised at specific ELLIS-affiliated institutions | High | Apply for the AI-in-drug-discovery summer school | Priority 1/3: trustworthy-AI-for-drug-discovery training, low-cost with a real mobility-funding mechanism — squarely on-mission capacity building. |
