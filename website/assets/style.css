@@ -209,7 +209,7 @@ main {
   --digest-gh-hover: #f5856c;
   --digest-both: #50285a;         /* plum  — both on the same day */
   --digest-both-hover: #6e3a7d;
-  --digest-events: #8cc8fa;       /* blue  — event reports */
+  --digest-events: #8cc8fa;       /* blue  — event digests */
   --digest-events-hover: #6bb0f0;
 }
 

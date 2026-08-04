@@ -27,11 +27,10 @@ GitHub digests live in [`github/`](github/) and follow the same format and namin
 convention as the literature digests (`YY-MM-DD-github-digest.md`). They are listed
 here and on the website as they are published.
 
-## Event reports
+## Event digests
 
-Event reports will live in `events/` (created once the first report is
-submitted) and follow the naming convention `YY-MM-DD-event-discovery.md`.
-They are listed here and on the website as they are published, roughly every
-6 months.
+- [2026-08-04](events/26-08-04-event-discovery.md)
 
-_None yet._
+Event digests live in [`events/`](events/) and follow the naming convention
+`YY-MM-DD-event-discovery.md`. They are listed here and on the website as
+they are published, roughly every 6 months.
