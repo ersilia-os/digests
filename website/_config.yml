@@ -3,7 +3,7 @@ description: Periodic digests of relevance to the Ersilia Open Source Initiative
 baseurl: /digests
 
 # Render the digest Markdown with our layout without touching the source files.
-# (The digests are copied into ./literature and ./github at build time — see .github/workflows/pages.yml)
+# (The digests are copied into ./literature, ./github, and ./events at build time — see .github/workflows/pages.yml)
 defaults:
   - scope:
       path: "literature"
@@ -11,6 +11,10 @@ defaults:
       layout: digest
   - scope:
       path: "github"
+    values:
+      layout: digest
+  - scope:
+      path: "events"
     values:
       layout: digest
 

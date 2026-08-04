@@ -10,12 +10,13 @@ Periodic digests of literature and activity relevant to the
 antimicrobial and antibiotic research, neglected diseases, and open science for
 global health.
 
-{% comment %} ---------- gather both digest families ---------- {% endcomment %}
+{% comment %} ---------- gather all digest families ---------- {% endcomment %}
 {% assign litdigests = site.pages | where_exp: "p", "p.path contains 'literature/'" | sort: "path" %}
 {% assign ghdigests = site.pages | where_exp: "p", "p.path contains 'github/'" | sort: "path" %}
+{% assign eventdigests = site.pages | where_exp: "p", "p.path contains 'events/'" | sort: "path" %}
 
-{% comment %} ---------- figure out the year from the most recent digest of either kind ---------- {% endcomment %}
-{% assign alldigests = litdigests | concat: ghdigests | sort: "name" %}
+{% comment %} ---------- figure out the year from the most recent digest/report of any kind ---------- {% endcomment %}
+{% assign alldigests = litdigests | concat: ghdigests | concat: eventdigests | sort: "name" %}
 {% assign latest = alldigests | last %}
 {% if latest %}
   {% assign year = latest.name | slice: 0, 2 | prepend: '20' %}
@@ -134,6 +135,22 @@ global health.
   <li>
     <a href="{{ d.url | relative_url }}">
       <span>Week of {{ d.name | replace: '-github-digest.md', '' | prepend: '20' }}</span>
+      <span class="arrow">→</span>
+    </a>
+  </li>
+{% endfor %}
+</ul>
+{% endif %}
+
+{% if eventdigests.size > 0 %}
+## Recent event reports
+
+{% assign recentevents = eventdigests | reverse %}
+<ul class="card-list">
+{% for d in recentevents limit: 8 %}
+  <li>
+    <a href="{{ d.url | relative_url }}">
+      <span>{{ d.name | replace: '-event-discovery.md', '' | prepend: '20' }}</span>
       <span class="arrow">→</span>
     </a>
   </li>

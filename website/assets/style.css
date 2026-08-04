@@ -209,6 +209,8 @@ main {
   --digest-gh-hover: #f5856c;
   --digest-both: #50285a;         /* plum  — both on the same day */
   --digest-both-hover: #6e3a7d;
+  --digest-events: #8cc8fa;       /* blue  — event reports */
+  --digest-events-hover: #6bb0f0;
 }
 
 .calendar {
@@ -319,3 +321,4 @@ a.cal-cell.has-both:hover {
 }
 .nav-dot.is-lit { background: var(--digest-lit); }
 .nav-dot.is-gh { background: var(--digest-gh); }
+.nav-dot.is-events { background: var(--digest-events); }
