@@ -2,6 +2,14 @@ title: Ersilia Digests
 description: Periodic digests of relevance to the Ersilia Open Source Initiative
 baseurl: /digests
 
+# Without this, kramdown's default (non-GFM) input mode "smart"-typographies the
+# `---` in a table's header-separator row into a single em dash before the table
+# parser ever sees it, silently breaking every pipe table (event-discovery's
+# report tables rendered as raw "| a | b |" text until this was set).
+markdown: kramdown
+kramdown:
+  input: GFM
+
 # Render the digest Markdown with our layout without touching the source files.
 # (The digests are copied into ./literature, ./github, and ./events at build time — see .github/workflows/pages.yml)
 defaults:

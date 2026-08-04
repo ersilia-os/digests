@@ -143,7 +143,7 @@ global health.
 {% endif %}
 
 {% if eventdigests.size > 0 %}
-## Recent event reports
+## Recent event digests
 
 {% assign recentevents = eventdigests | reverse %}
 <ul class="card-list">
