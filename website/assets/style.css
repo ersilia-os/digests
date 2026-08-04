@@ -150,6 +150,47 @@ main {
 .content pre code { background: none; padding: 0; }
 .content hr { border: none; border-top: 1px solid var(--border); margin: 30px 0; }
 
+/* Data tables (event-discovery reports). table-layout: fixed + explicit
+   per-column widths give every table on the site the same column
+   proportions — without this, unstyled browser default tables auto-size
+   each column from that table's own content, so no two tables end up the
+   same width. Column widths assume the fixed 10-column schema
+   render_report.py always emits, in this order: Event · Markers · Dates ·
+   Location · Format · Type · Cost · Bursary · Priority · Engagement · Why
+   it matters. This is the only digest family currently emitting tables —
+   revisit these widths if that changes. */
+.content table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  margin: 0 0 20px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 7px 9px;
+  text-align: left;
+  vertical-align: top;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+.content th {
+  background: var(--bg-alt);
+  color: var(--text-strong);
+  font-weight: 600;
+}
+.content th:nth-child(1),  .content td:nth-child(1)  { width: 14%; } /* Event */
+.content th:nth-child(2),  .content td:nth-child(2)  { width: 5%; }  /* Markers */
+.content th:nth-child(3),  .content td:nth-child(3)  { width: 9%; }  /* Dates */
+.content th:nth-child(4),  .content td:nth-child(4)  { width: 9%; }  /* Location */
+.content th:nth-child(5),  .content td:nth-child(5)  { width: 8%; }  /* Format · Type */
+.content th:nth-child(6),  .content td:nth-child(6)  { width: 7%; }  /* Cost */
+.content th:nth-child(7),  .content td:nth-child(7)  { width: 10%; } /* Bursary */
+.content th:nth-child(8),  .content td:nth-child(8)  { width: 6%; }  /* Priority */
+.content th:nth-child(9),  .content td:nth-child(9)  { width: 12%; } /* Engagement */
+.content th:nth-child(10), .content td:nth-child(10) { width: 20%; } /* Why it matters */
+
 /* landing "card" list */
 .card-list { list-style: none; padding: 0; margin: 0; }
 .card-list li { margin: 0 0 10px; }
