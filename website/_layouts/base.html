@@ -7,7 +7,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+  {% comment %} ?v=<build time> so a CSS change is never masked by a cached stylesheet.
+       Without it, a browser can hold the old style.css while picking up new HTML —
+       which reads as "the CSS change did not work" when it simply was not fetched. {% endcomment %}
+  <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 </head>
 <body>
   {% assign digests = site.pages | where_exp: "p", "p.path contains 'literature/'" | sort: "path" | reverse %}
@@ -66,7 +69,12 @@
     </aside>
 
     <main>
-      <article class="content">
+      {% comment %} `wide` is set per family in _config.yml defaults (currently events
+           only). Table-first reports get one shared width so the header block,
+           headings and bullet lists end flush with their tables. Keyed on the flag
+           rather than on layout == 'digest': literature and github digests have no
+           tables, and widening prose to 1100px only hurts line length. {% endcomment %}
+      <article class="content{% if page.wide %} content-wide{% endif %}">
         {{ content }}
       </article>
     </main>

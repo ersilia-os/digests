@@ -46,6 +46,20 @@ global health.
 {% assign ghkeys = ghkeys | split: "," %}
 {% assign ghurls = ghurls | split: "," %}
 
+{% comment %} ---------- events: date -> url lookup ----------
+     Filename stays `-event-discovery.md` deliberately: renaming it would change the
+     Pages URL and break the link in the Slack alert already published for that report.
+{% endcomment %}
+{% assign evkeys = "" %}
+{% assign evurls = "" %}
+{% for d in eventdigests %}
+  {% assign full = d.name | replace: '-event-discovery.md', '' | prepend: '20' %}
+  {% assign evkeys = evkeys | append: full | append: "," %}
+  {% assign evurls = evurls | append: d.url | append: "," %}
+{% endfor %}
+{% assign evkeys = evkeys | split: "," %}
+{% assign evurls = evurls | split: "," %}
+
 {% comment %} ---------- date geometry for the grid ---------- {% endcomment %}
 {% assign jan1 = year | append: '-01-01' %}
 {% assign base_unix = jan1 | append: ' 12:00:00' | date: "%s" | plus: 0 %}
@@ -70,6 +84,17 @@ global health.
         {% endfor %}
       </div>
 
+      {% comment %} All three families share ONE daily grid.
+
+           A day can carry more than one digest, so cells are classified by how many
+           landed that day: exactly one gets that family's colour, two or more get a
+           single "multiple" colour rather than a per-combination palette — three
+           families would otherwise need seven colours, which stops being readable at
+           13px. A multi-digest cell can only carry one href, so it opens the first
+           family present in the order literature -> github -> events, and the tooltip
+           names everything published that day so nothing is hidden.
+      {% endcomment %}
+
       <div class="cal-grid">
         {% for b in (1..jan1_dow) %}<span class="cal-cell is-blank"></span>{% endfor %}
         {% for i in (1..days) %}
@@ -78,17 +103,40 @@ global health.
           {% assign ds = ts | date: "%Y-%m-%d" %}
           {% assign nice = ts | date: "%b %-d, %Y" %}
 
-          {% assign liturl = "" %}
-          {% for k in litkeys %}{% if k == ds %}{% assign liturl = liturls[forloop.index0] %}{% endif %}{% endfor %}
-          {% assign ghurl = "" %}
-          {% for k in ghkeys %}{% if k == ds %}{% assign ghurl = ghurls[forloop.index0] %}{% endif %}{% endfor %}
+          {% assign lu = "" %}
+          {% for k in litkeys %}{% if k == ds %}{% assign lu = liturls[forloop.index0] %}{% endif %}{% endfor %}
+          {% assign gu = "" %}
+          {% for k in ghkeys %}{% if k == ds %}{% assign gu = ghurls[forloop.index0] %}{% endif %}{% endfor %}
+          {% assign eu = "" %}
+          {% for k in evkeys %}{% if k == ds %}{% assign eu = evurls[forloop.index0] %}{% endif %}{% endfor %}
 
-          {% if liturl != "" and ghurl != "" %}
-            <a class="cal-cell has-both" href="{{ liturl | relative_url }}" title="Literature + GitHub digests — {{ nice }} (click for the literature digest)" aria-label="Literature and GitHub digests published {{ nice }}"></a>
-          {% elsif liturl != "" %}
-            <a class="cal-cell has-lit" href="{{ liturl | relative_url }}" title="Literature digest — {{ nice }}" aria-label="Literature digest published {{ nice }}"></a>
-          {% elsif ghurl != "" %}
-            <a class="cal-cell has-gh" href="{{ ghurl | relative_url }}" title="GitHub digest — {{ nice }}" aria-label="GitHub digest published {{ nice }}"></a>
+          {% assign n = 0 %}
+          {% assign names = "" %}
+          {% assign href = "" %}
+          {% if lu != "" %}
+            {% assign n = n | plus: 1 %}{% assign names = "Literature" %}{% assign href = lu %}
+          {% endif %}
+          {% if gu != "" %}
+            {% assign n = n | plus: 1 %}
+            {% if names != "" %}{% assign names = names | append: " + " %}{% endif %}
+            {% assign names = names | append: "GitHub" %}
+            {% if href == "" %}{% assign href = gu %}{% endif %}
+          {% endif %}
+          {% if eu != "" %}
+            {% assign n = n | plus: 1 %}
+            {% if names != "" %}{% assign names = names | append: " + " %}{% endif %}
+            {% assign names = names | append: "Events" %}
+            {% if href == "" %}{% assign href = eu %}{% endif %}
+          {% endif %}
+
+          {% if n > 1 %}
+            <a class="cal-cell has-multi" href="{{ href | relative_url }}" title="{{ names }} digests — {{ nice }} ({{ n }} published; opens the first)" aria-label="{{ names }} digests published {{ nice }}"></a>
+          {% elsif lu != "" %}
+            <a class="cal-cell has-lit" href="{{ lu | relative_url }}" title="Literature digest — {{ nice }}" aria-label="Literature digest published {{ nice }}"></a>
+          {% elsif gu != "" %}
+            <a class="cal-cell has-gh" href="{{ gu | relative_url }}" title="GitHub digest — {{ nice }}" aria-label="GitHub digest published {{ nice }}"></a>
+          {% elsif eu != "" %}
+            <a class="cal-cell has-ev" href="{{ eu | relative_url }}" title="Event digest — {{ nice }}" aria-label="Event digest published {{ nice }}"></a>
           {% elsif ts > today_noon %}
             <span class="cal-cell is-future" title="{{ nice }}"></span>
           {% elsif ts == today_noon %}
@@ -106,7 +154,9 @@ global health.
     <span class="sep">·</span>
     <span class="swatch gh"></span> GitHub
     <span class="sep">·</span>
-    <span class="swatch both"></span> both
+    <span class="swatch ev"></span> events
+    <span class="sep">·</span>
+    <span class="swatch multi"></span> multiple
     <span class="sep">·</span>
     <span class="swatch empty"></span> no digest
   </div>
