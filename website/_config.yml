@@ -25,6 +25,12 @@ defaults:
       path: "events"
     values:
       layout: digest
+      # Event reports are table-first documents: they get the wide column so the
+      # header block, headings and bullet lists line up with their tables instead of
+      # stopping at the 720px prose width. Opt-in per family on purpose — literature
+      # and github digests have no tables, and widening prose to 1100px only makes
+      # the line length worse. A future family that emits tables adds `wide: true`.
+      wide: true
 
 exclude:
   - Gemfile

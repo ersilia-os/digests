@@ -110,6 +110,21 @@ main {
 .content { width: 100%; max-width: var(--content-max); }
 .content > :first-child { margin-top: 0; }
 
+/* Digest report pages share ONE width for everything.
+   These documents are mostly wide tables. With the article capped at the 720px prose
+   column, the tables broke out to ~1100px while the header block, h2 rules and bullet
+   lists stopped short — leaving a dead band down the right of every non-table element.
+   Widening the whole article instead means every element ends on the same edge.
+   min() keeps it from exceeding the space main actually has: 128px is main's own
+   left+right padding, and 1100px caps it on very large monitors. */
+.content.content-wide { max-width: min(1100px, calc(100vw - var(--sidebar-w) - 128px)); }
+/* Tables no longer need the viewport breakout on these pages — they just fill the
+   article, which is already the width the breakout used to compute.
+   Doubled-up selector is deliberate: `.content-wide table` and `.content table` have
+   EQUAL specificity, and `.content table` appears later in this file, so the single
+   -class version lost and tables kept the old breakout width. */
+.content.content-wide table { width: 100%; max-width: 100%; }
+
 .content h1 {
   font-size: 1.6rem; font-weight: 700; line-height: 1.3;
   letter-spacing: -0.02em; color: var(--text-strong); margin: 0 0 20px;
@@ -249,8 +264,10 @@ main {
 
   /* No sidebar taking horizontal space in mobile's off-canvas layout, so the
      desktop breakout calc (which subtracts --sidebar-w) doesn't apply — just
-     fill .content's own (already full-width) box. */
+     fill .content's own (already full-width) box. Same reason the wide digest
+     column collapses back to full width here. */
   .content table { width: 100%; max-width: 100%; }
+  .content.content-wide { max-width: 100%; }
 }
 
 /* ---------- year calendar (digest index) ---------- */
@@ -301,6 +318,7 @@ main {
   gap: var(--cal-gap);
 }
 
+
 .cal-cell {
   width: var(--cal-cell);
   height: var(--cal-cell);
@@ -318,7 +336,8 @@ main {
 /* a day that has a published digest */
 a.cal-cell.has-lit,
 a.cal-cell.has-gh,
-a.cal-cell.has-both {
+a.cal-cell.has-ev,
+a.cal-cell.has-multi {
   transition: transform .1s ease, box-shadow .1s ease;
 }
 a.cal-cell.has-lit {
@@ -339,11 +358,22 @@ a.cal-cell.has-gh:hover {
   transform: scale(1.35); z-index: 2;
   box-shadow: 0 0 0 1px rgba(80,40,90,0.35), 0 3px 8px rgba(80,40,90,0.35);
 }
-a.cal-cell.has-both {
+a.cal-cell.has-ev {
+  background: var(--digest-events);
+  box-shadow: 0 0 0 1px rgba(80,40,90,0.18), 0 1px 3px rgba(80,40,90,0.20);
+}
+a.cal-cell.has-ev:hover {
+  background: var(--digest-events-hover);
+  transform: scale(1.35); z-index: 2;
+  box-shadow: 0 0 0 1px rgba(80,40,90,0.35), 0 3px 8px rgba(80,40,90,0.35);
+}
+/* Two or more digests on the same day. One colour for any combination: with three
+   families a per-combination palette needs seven shades, which is unreadable at 13px. */
+a.cal-cell.has-multi {
   background: var(--digest-both);
   box-shadow: 0 0 0 1px var(--digest-both), 0 1px 3px rgba(80,40,90,0.30);
 }
-a.cal-cell.has-both:hover {
+a.cal-cell.has-multi:hover {
   background: var(--digest-both-hover);
   transform: scale(1.35); z-index: 2;
   box-shadow: 0 0 0 1px var(--digest-both-hover), 0 3px 8px rgba(80,40,90,0.45);
@@ -365,7 +395,8 @@ a.cal-cell.has-both:hover {
 .cal-legend .swatch.empty { background: var(--bg-soft); box-shadow: none; }
 .cal-legend .swatch.lit { background: var(--digest-lit); }
 .cal-legend .swatch.gh { background: var(--digest-gh); }
-.cal-legend .swatch.both { background: var(--digest-both); }
+.cal-legend .swatch.ev { background: var(--digest-events); }
+.cal-legend .swatch.multi { background: var(--digest-both); }
 .cal-legend .sep { color: var(--border); }
 
 /* sidebar nav-group dots — match the calendar encoding */
