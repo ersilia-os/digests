@@ -11,6 +11,11 @@ website/_config_local.yml
 # Digests are staged into the site source at build time (see .github/workflows/pages.yml)
 website/literature/
 website/github/
+website/events/
+website/models/
+
+# Local preview override naming the plugins the github-pages gem supplies on Pages
+website/_config.local.yml
 
 # Bundler
 Gemfile.lock

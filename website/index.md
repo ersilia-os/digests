@@ -14,9 +14,10 @@ global health.
 {% assign litdigests = site.pages | where_exp: "p", "p.path contains 'literature/'" | sort: "path" %}
 {% assign ghdigests = site.pages | where_exp: "p", "p.path contains 'github/'" | sort: "path" %}
 {% assign eventdigests = site.pages | where_exp: "p", "p.path contains 'events/'" | sort: "path" %}
+{% assign modeldigests = site.pages | where_exp: "p", "p.path contains 'models/'" | sort: "path" %}
 
 {% comment %} ---------- figure out the year from the most recent digest/report of any kind ---------- {% endcomment %}
-{% assign alldigests = litdigests | concat: ghdigests | concat: eventdigests | sort: "name" %}
+{% assign alldigests = litdigests | concat: ghdigests | concat: eventdigests | concat: modeldigests | sort: "name" %}
 {% assign latest = alldigests | last %}
 {% if latest %}
   {% assign year = latest.name | slice: 0, 2 | prepend: '20' %}
@@ -60,6 +61,17 @@ global health.
 {% assign evkeys = evkeys | split: "," %}
 {% assign evurls = evurls | split: "," %}
 
+{% comment %} ---------- model incorporations: date -> url lookup ---------- {% endcomment %}
+{% assign modkeys = "" %}
+{% assign modurls = "" %}
+{% for d in modeldigests %}
+  {% assign full = d.name | replace: '-models-digest.md', '' | prepend: '20' %}
+  {% assign modkeys = modkeys | append: full | append: "," %}
+  {% assign modurls = modurls | append: d.url | append: "," %}
+{% endfor %}
+{% assign modkeys = modkeys | split: "," %}
+{% assign modurls = modurls | split: "," %}
+
 {% comment %} ---------- date geometry for the grid ---------- {% endcomment %}
 {% assign jan1 = year | append: '-01-01' %}
 {% assign base_unix = jan1 | append: ' 12:00:00' | date: "%s" | plus: 0 %}
@@ -88,8 +100,8 @@ global health.
 
            A day can carry more than one digest, so cells are classified by how many
            landed that day: exactly one gets that family's colour, two or more get a
-           single "multiple" colour rather than a per-combination palette — three
-           families would otherwise need seven colours, which stops being readable at
+           single "multiple" colour rather than a per-combination palette — four
+           families would otherwise need fifteen colours, which stops being readable at
            13px. A multi-digest cell can only carry one href, so it opens the first
            family present in the order literature -> github -> events, and the tooltip
            names everything published that day so nothing is hidden.
@@ -109,6 +121,8 @@ global health.
           {% for k in ghkeys %}{% if k == ds %}{% assign gu = ghurls[forloop.index0] %}{% endif %}{% endfor %}
           {% assign eu = "" %}
           {% for k in evkeys %}{% if k == ds %}{% assign eu = evurls[forloop.index0] %}{% endif %}{% endfor %}
+          {% assign mu = "" %}
+          {% for k in modkeys %}{% if k == ds %}{% assign mu = modurls[forloop.index0] %}{% endif %}{% endfor %}
 
           {% assign n = 0 %}
           {% assign names = "" %}
@@ -128,6 +142,12 @@ global health.
             {% assign names = names | append: "Events" %}
             {% if href == "" %}{% assign href = eu %}{% endif %}
           {% endif %}
+          {% if mu != "" %}
+            {% assign n = n | plus: 1 %}
+            {% if names != "" %}{% assign names = names | append: " + " %}{% endif %}
+            {% assign names = names | append: "Model incorporations" %}
+            {% if href == "" %}{% assign href = mu %}{% endif %}
+          {% endif %}
 
           {% if n > 1 %}
             <a class="cal-cell has-multi" href="{{ href | relative_url }}" title="{{ names }} digests — {{ nice }} ({{ n }} published; opens the first)" aria-label="{{ names }} digests published {{ nice }}"></a>
@@ -137,6 +157,8 @@ global health.
             <a class="cal-cell has-gh" href="{{ gu | relative_url }}" title="GitHub digest — {{ nice }}" aria-label="GitHub digest published {{ nice }}"></a>
           {% elsif eu != "" %}
             <a class="cal-cell has-ev" href="{{ eu | relative_url }}" title="Event digest — {{ nice }}" aria-label="Event digest published {{ nice }}"></a>
+          {% elsif mu != "" %}
+            <a class="cal-cell has-mod" href="{{ mu | relative_url }}" title="Model incorporation digest — {{ nice }}" aria-label="Model incorporation digest published {{ nice }}"></a>
           {% elsif ts > today_noon %}
             <span class="cal-cell is-future" title="{{ nice }}"></span>
           {% elsif ts == today_noon %}
@@ -155,6 +177,8 @@ global health.
     <span class="swatch gh"></span> GitHub
     <span class="sep">·</span>
     <span class="swatch ev"></span> events
+    <span class="sep">·</span>
+    <span class="swatch mod"></span> model incorporations
     <span class="sep">·</span>
     <span class="swatch multi"></span> multiple
     <span class="sep">·</span>
@@ -185,6 +209,22 @@ global health.
   <li>
     <a href="{{ d.url | relative_url }}">
       <span>Week of {{ d.name | replace: '-github-digest.md', '' | prepend: '20' }}</span>
+      <span class="arrow">→</span>
+    </a>
+  </li>
+{% endfor %}
+</ul>
+{% endif %}
+
+{% if modeldigests.size > 0 %}
+## Recent model incorporation digests
+
+{% assign recentmodels = modeldigests | reverse %}
+<ul class="card-list">
+{% for d in recentmodels limit: 8 %}
+  <li>
+    <a href="{{ d.url | relative_url }}">
+      <span>{{ d.name | replace: '-models-digest.md', '' | prepend: '20' }}</span>
       <span class="arrow">→</span>
     </a>
   </li>
