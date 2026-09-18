@@ -28,6 +28,7 @@ jobs:
           cp -r literature website/literature
           cp -r github website/github
           if [ -d events ]; then cp -r events website/events; fi
+          if [ -d models ]; then cp -r models website/models; fi
 
       - uses: ruby/setup-ruby@v1
         with:

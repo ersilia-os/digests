@@ -11,7 +11,7 @@ kramdown:
   input: GFM
 
 # Render the digest Markdown with our layout without touching the source files.
-# (The digests are copied into ./literature, ./github, and ./events at build time — see .github/workflows/pages.yml)
+# (The digests are copied into ./literature, ./github, ./events and ./models at build time — see .github/workflows/pages.yml)
 defaults:
   - scope:
       path: "literature"
@@ -22,9 +22,18 @@ defaults:
     values:
       layout: digest
   - scope:
+      path: "models"
+    values:
+      layout: digest
+      # One row per model, so it takes the wide column for the same reason the event
+      # reports do.
+      wide: true
+      family: models
+  - scope:
       path: "events"
     values:
       layout: digest
+      family: events
       # Event reports are table-first documents: they get the wide column so the
       # header block, headings and bullet lists line up with their tables instead of
       # stopping at the 720px prose width. Opt-in per family on purpose — literature
