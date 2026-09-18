@@ -103,8 +103,8 @@ global health.
            single "multiple" colour rather than a per-combination palette — four
            families would otherwise need fifteen colours, which stops being readable at
            13px. A multi-digest cell can only carry one href, so it opens the first
-           family present in the order literature -> github -> events, and the tooltip
-           names everything published that day so nothing is hidden.
+           family present in the order literature -> github -> events -> model incorporations,
+           and the tooltip names everything published that day so nothing is hidden.
       {% endcomment %}
 
       <div class="cal-grid">
