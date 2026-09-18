@@ -41,3 +41,7 @@ here and on the website as they are published.
 Event digests live in [`events/`](events/) and follow the naming convention
 `YY-MM-DD-event-discovery.md`. They are listed here and on the website as
 they are published, roughly every 6 months.
+
+## Model incorporation digests
+
+- [2026-08-31](models/26-08-31-models-digest.md)
