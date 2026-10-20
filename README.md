@@ -25,6 +25,7 @@ Digests of relevance to the Ersilia Open Source Initiative
 
 ## GitHub digests
 
+- [2026-10-20](github/26-10-20-github-digest.md)
 - [2026-10-05](github/26-10-05-github-digest.md)
 - [2026-09-29](github/26-09-29-github-digest.md)
 - [2026-09-14](github/26-09-14-github-digest.md)
