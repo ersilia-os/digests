@@ -52,5 +52,6 @@ they are published, roughly every 6 months.
 
 ## Model incorporation digests
 
+- [2026-10-31](models/26-10-31-models-digest.md)
 - [2026-09-30](models/26-09-30-models-digest.md)
 - [2026-08-31](models/26-08-31-models-digest.md)
