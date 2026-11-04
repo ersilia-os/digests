@@ -175,7 +175,7 @@ calendar on the home page, where colour encodes which kind of digest landed on w
 - **Primary (#6C5CE7, periwinkle)** is the interactive colour: links, the active nav item,
   focus rings, card hover. It harmonises with the data hues where plum would be too heavy.
 - **Brand identity (#50285A, plum)** is Ersilia's signature. It appears only in the
-  wordmark, the favicon and the "multiple digests" calendar cell. Used sparingly.
+  wordmark and the "multiple digests" calendar cell. Used sparingly.
 - **Ink (#2C3E50)** is the body text — Ersilia's soft off-black, never pure black.
 - **Surfaces** are cool near-whites: page `background` #FAFAFC, the sidebar and cards on
   `surface` #FFFFFF, recessed fills (code, empty calendar cells) on `surface-container`.
@@ -223,6 +223,8 @@ pill.
 
 ## Components
 
+- **Favicon:** the official Ersilia mark (plum grid) as served by ersilia.io; never a
+  redrawn or invented icon.
 - **Wordmark:** "Ersilia" in plum + "*Digests*" in italic periwinkle, above a muted
   one-line tagline. Typographic, no logo image.
 - **Sidebar archive:** one group per family, sentence-case muted group title, dates in mono.
