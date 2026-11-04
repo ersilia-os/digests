@@ -6,7 +6,11 @@
   <title>{% if page.title and page.title != site.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml">
+  <meta name="theme-color" content="#FAFAFC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#17161C" media="(prefers-color-scheme: dark)">
+{% include social-meta.html %}
   {% comment %} ?v=<build time> so a CSS change is never masked by a cached stylesheet.
        Without it, a browser can hold the old style.css while picking up new HTML —
        which reads as "the CSS change did not work" when it simply was not fetched. {% endcomment %}
@@ -22,15 +26,15 @@
 
   <header class="topbar">
     <label for="nav-toggle" class="menu-label" aria-label="Toggle navigation">☰</label>
-    <a href="{{ '/' | relative_url }}" class="topbar-brand">{{ site.title }}</a>
+    <a href="{{ '/' | relative_url }}" class="wordmark">Ersilia <em>Digests</em></a>
   </header>
 
   <div class="layout">
     <aside class="sidebar">
-      <a href="{{ '/' | relative_url }}" class="brand">{{ site.title }}</a>
-      <p class="tagline">{{ site.description }}</p>
+      <a href="{{ '/' | relative_url }}" class="wordmark">Ersilia <em>Digests</em></a>
+      <p class="tagline">Periodic reports from the Ersilia Open Source Initiative</p>
       <nav>
-        <p class="nav-group-title"><span class="nav-dot is-lit"></span>Literature digests</p>
+        <p class="nav-group-title">Literature digests</p>
         <ul>
           {% for d in digests %}
           <li>
@@ -42,7 +46,7 @@
         </ul>
 
         {% if ghdigests.size > 0 %}
-        <p class="nav-group-title"><span class="nav-dot is-gh"></span>GitHub digests</p>
+        <p class="nav-group-title">GitHub digests</p>
         <ul>
           {% for d in ghdigests %}
           <li>
@@ -55,7 +59,7 @@
         {% endif %}
 
         {% if modeldigests.size > 0 %}
-        <p class="nav-group-title"><span class="nav-dot is-models"></span>Model incorporations</p>
+        <p class="nav-group-title">Model incorporations</p>
         <ul>
           {% for d in modeldigests %}
           <li>
@@ -68,7 +72,7 @@
         {% endif %}
 
         {% if eventdigests.size > 0 %}
-        <p class="nav-group-title"><span class="nav-dot is-events"></span>Event digests</p>
+        <p class="nav-group-title">Event digests</p>
         <ul>
           {% for d in eventdigests %}
           <li>
@@ -91,6 +95,9 @@
       <article class="content{% if page.wide %} content-wide{% endif %}{% if page.family %} family-{{ page.family }}{% endif %}">
         {{ content }}
       </article>
+      <footer class="site-footer">
+        <a href="https://ersilia.io">Ersilia Open Source Initiative</a><span class="sep">·</span>open-source AI for global-health drug discovery<span class="sep">·</span><a href="https://github.com/ersilia-os/digests">Source on GitHub</a>
+      </footer>
     </main>
   </div>
 

@@ -1,14 +1,17 @@
 ---
 layout: base
-title: Home
+title: Ersilia Digests
+description: "Weekly literature and GitHub digests, monthly model-incorporation reports and event scans from the Ersilia Open Source Initiative."
 ---
+
+<p class="eyebrow page-eyebrow"><span class="family-name">Ersilia Open Source Initiative</span> · open-source AI for global health</p>
 
 # Ersilia Digests
 
-Periodic digests of literature and activity relevant to the
-[Ersilia Open Source Initiative](https://ersilia.io) — AI/ML for drug discovery,
-antimicrobial and antibiotic research, neglected diseases, and open science for
-global health.
+<p class="lede">What we read, built and shipped — weekly literature and GitHub digests, monthly
+model-incorporation reports and event scans from the
+<a href="https://ersilia.io">Ersilia Open Source Initiative</a>, covering AI/ML for drug
+discovery, antimicrobial research, neglected diseases and open science for global health.</p>
 
 {% comment %} ---------- gather all digest families ---------- {% endcomment %}
 {% assign litdigests = site.pages | where_exp: "p", "p.path contains 'literature/'" | sort: "path" %}
@@ -172,17 +175,12 @@ global health.
     </div>
   </div>
   <div class="cal-legend">
-    <span class="swatch lit"></span> literature
-    <span class="sep">·</span>
-    <span class="swatch gh"></span> GitHub
-    <span class="sep">·</span>
-    <span class="swatch ev"></span> events
-    <span class="sep">·</span>
-    <span class="swatch mod"></span> model incorporations
-    <span class="sep">·</span>
-    <span class="swatch multi"></span> multiple
-    <span class="sep">·</span>
-    <span class="swatch empty"></span> no digest
+    <span class="item"><span class="swatch lit"></span>Literature</span>
+    <span class="item"><span class="swatch gh"></span>GitHub</span>
+    <span class="item"><span class="swatch mod"></span>Model incorporations</span>
+    <span class="item"><span class="swatch ev"></span>Events</span>
+    <span class="item"><span class="swatch multi"></span>Multiple</span>
+    <span class="item"><span class="swatch empty"></span>No digest</span>
   </div>
 </div>
 
@@ -193,8 +191,8 @@ global health.
 {% for d in recentlit limit: 8 %}
   <li>
     <a href="{{ d.url | relative_url }}">
-      <span>Week of {{ d.name | replace: '-literature-digest.md', '' | prepend: '20' }}</span>
-      <span class="arrow">→</span>
+      <span>Week of <span class="date">{{ d.name | replace: '-literature-digest.md', '' | prepend: '20' }}</span></span>
+      <span class="card-meta">{% if forloop.first %}<span class="latest">Latest</span>{% endif %}<span class="arrow">→</span></span>
     </a>
   </li>
 {% endfor %}
@@ -208,8 +206,8 @@ global health.
 {% for d in recentgh limit: 8 %}
   <li>
     <a href="{{ d.url | relative_url }}">
-      <span>Week of {{ d.name | replace: '-github-digest.md', '' | prepend: '20' }}</span>
-      <span class="arrow">→</span>
+      <span>Week of <span class="date">{{ d.name | replace: '-github-digest.md', '' | prepend: '20' }}</span></span>
+      <span class="card-meta">{% if forloop.first %}<span class="latest">Latest</span>{% endif %}<span class="arrow">→</span></span>
     </a>
   </li>
 {% endfor %}
@@ -224,8 +222,8 @@ global health.
 {% for d in recentmodels limit: 8 %}
   <li>
     <a href="{{ d.url | relative_url }}">
-      <span>{{ d.name | replace: '-models-digest.md', '' | prepend: '20' }}</span>
-      <span class="arrow">→</span>
+      <span>Month ending <span class="date">{{ d.name | replace: '-models-digest.md', '' | prepend: '20' }}</span></span>
+      <span class="card-meta">{% if forloop.first %}<span class="latest">Latest</span>{% endif %}<span class="arrow">→</span></span>
     </a>
   </li>
 {% endfor %}
@@ -240,8 +238,8 @@ global health.
 {% for d in recentevents limit: 8 %}
   <li>
     <a href="{{ d.url | relative_url }}">
-      <span>{{ d.name | replace: '-event-discovery.md', '' | prepend: '20' }}</span>
-      <span class="arrow">→</span>
+      <span>Scan of <span class="date">{{ d.name | replace: '-event-discovery.md', '' | prepend: '20' }}</span></span>
+      <span class="card-meta">{% if forloop.first %}<span class="latest">Latest</span>{% endif %}<span class="arrow">→</span></span>
     </a>
   </li>
 {% endfor %}

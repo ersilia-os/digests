@@ -42,6 +42,15 @@ jobs:
         env:
           JEKYLL_ENV: production
 
+      # Social preview cards (LinkedIn / Slack / X): screenshot the top of every built
+      # page into _site/og/<page>.png, the path og:image points at in
+      # website/_includes/social-meta.html. Uses the runner's preinstalled Chrome.
+      - name: Generate social preview images
+        run: |
+          # Digest headers use emoji markers; without a colour emoji font they render as boxes.
+          sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends fonts-noto-color-emoji >/dev/null
+          python3 scripts/make_og_images.py "${{ github.workspace }}/_site" --baseurl /digests
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

@@ -1,0 +1,33 @@
+{% comment %}
+  Social preview (LinkedIn / Slack / X / WhatsApp). Hand-written rather than jekyll-seo-tag
+  because the digests carry no front matter: title comes from the H1 (jekyll-titles-from-
+  headings), description from the per-family defaults in _config.yml.
+  The image is a screenshot of the top of THIS page, generated after the Jekyll build by
+  scripts/make_og_images.py into _site/og/<page path>.png — keep the two paths in sync.
+  Every URL must be absolute: crawlers fetch it with no page context.
+{% endcomment %}
+{%- assign og_slug = page.url | remove_first: '/' | replace: '.html', '' -%}
+{%- assign og_last = og_slug | slice: -1, 1 -%}
+{%- if og_slug == '' or og_last == '/' -%}{%- assign og_slug = og_slug | append: 'index' -%}{%- endif -%}
+{%- assign og_image = '/og/' | append: og_slug | append: '.png' | absolute_url -%}
+{%- if page.title and page.title != 'Home' -%}{%- assign og_title = page.title -%}{%- else -%}{%- assign og_title = site.title -%}{%- endif -%}
+{%- assign og_desc = page.description | default: site.description -%}
+{%- assign og_url = page.url | replace: 'index.html', '' | absolute_url -%}
+  <meta name="description" content="{{ og_desc | escape }}">
+  <link rel="canonical" href="{{ og_url }}">
+  <meta property="og:type" content="{% if page.family %}article{% else %}website{% endif %}">
+  <meta property="og:site_name" content="{{ site.title }}">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:title" content="{{ og_title | escape }}">
+  <meta property="og:description" content="{{ og_desc | escape }}">
+  <meta property="og:url" content="{{ og_url }}">
+  <meta property="og:image" content="{{ og_image }}">
+  <meta property="og:image:secure_url" content="{{ og_image }}">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{% if og_title == site.title %}{{ site.title }} — {{ site.description | escape }}{% else %}{{ og_title | escape }} — {{ site.title }}{% endif %}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ og_title | escape }}">
+  <meta name="twitter:description" content="{{ og_desc | escape }}">
+  <meta name="twitter:image" content="{{ og_image }}">
