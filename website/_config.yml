@@ -1,5 +1,6 @@
 title: Ersilia Digests
 description: Periodic digests of relevance to the Ersilia Open Source Initiative
+url: https://ersilia-os.github.io
 baseurl: /digests
 
 # Without this, kramdown's default (non-GFM) input mode "smart"-typographies the
@@ -17,10 +18,16 @@ defaults:
       path: "literature"
     values:
       layout: digest
+      family: literature
+      family_name: Literature digest
+      description: "Weekly scan of new models, datasets and papers for the Ersilia Model Hub, with a focus on antimicrobial drug discovery and global health."
   - scope:
       path: "github"
     values:
       layout: digest
+      family: github
+      family_name: GitHub digest
+      description: "Issue and pull-request activity across the ersilia-os open-source repositories, and what needs attention."
   - scope:
       path: "models"
     values:
@@ -29,11 +36,15 @@ defaults:
       # reports do.
       wide: true
       family: models
+      family_name: Model incorporation digest
+      description: "Every model incorporated into the Ersilia Model Hub this month, crediting the original authors."
   - scope:
       path: "events"
     values:
       layout: digest
       family: events
+      family_name: Event digest
+      description: "Conferences, workshops and calls relevant to open-source AI for global-health drug discovery."
       # Event reports are table-first documents: they get the wide column so the
       # header block, headings and bullet lists line up with their tables instead of
       # stopping at the 720px prose width. Opt-in per family on purpose — literature
