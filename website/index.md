@@ -188,7 +188,7 @@ discovery, antimicrobial research, neglected diseases and open science for globa
 
 {% assign recentlit = litdigests | reverse %}
 <ul class="card-list">
-{% for d in recentlit limit: 8 %}
+{% for d in recentlit limit: 5 %}
   <li>
     <a href="{{ d.url | relative_url }}">
       <span>Week of <span class="date">{{ d.name | replace: '-literature-digest.md', '' | prepend: '20' }}</span></span>
@@ -197,13 +197,14 @@ discovery, antimicrobial research, neglected diseases and open science for globa
   </li>
 {% endfor %}
 </ul>
+<p class="see-all"><a href="{{ '/archive/literature.html' | relative_url }}">See all {{ recentlit.size }} →</a></p>
 
 {% if ghdigests.size > 0 %}
 ## Recent GitHub digests
 
 {% assign recentgh = ghdigests | reverse %}
 <ul class="card-list">
-{% for d in recentgh limit: 8 %}
+{% for d in recentgh limit: 5 %}
   <li>
     <a href="{{ d.url | relative_url }}">
       <span>Week of <span class="date">{{ d.name | replace: '-github-digest.md', '' | prepend: '20' }}</span></span>
@@ -212,6 +213,7 @@ discovery, antimicrobial research, neglected diseases and open science for globa
   </li>
 {% endfor %}
 </ul>
+<p class="see-all"><a href="{{ '/archive/github.html' | relative_url }}">See all {{ recentgh.size }} →</a></p>
 {% endif %}
 
 {% if modeldigests.size > 0 %}
@@ -219,7 +221,7 @@ discovery, antimicrobial research, neglected diseases and open science for globa
 
 {% assign recentmodels = modeldigests | reverse %}
 <ul class="card-list">
-{% for d in recentmodels limit: 8 %}
+{% for d in recentmodels limit: 5 %}
   <li>
     <a href="{{ d.url | relative_url }}">
       <span>Month ending <span class="date">{{ d.name | replace: '-models-digest.md', '' | prepend: '20' }}</span></span>
@@ -228,6 +230,7 @@ discovery, antimicrobial research, neglected diseases and open science for globa
   </li>
 {% endfor %}
 </ul>
+<p class="see-all"><a href="{{ '/archive/models.html' | relative_url }}">See all {{ recentmodels.size }} →</a></p>
 {% endif %}
 
 {% if eventdigests.size > 0 %}
@@ -235,7 +238,7 @@ discovery, antimicrobial research, neglected diseases and open science for globa
 
 {% assign recentevents = eventdigests | reverse %}
 <ul class="card-list">
-{% for d in recentevents limit: 8 %}
+{% for d in recentevents limit: 5 %}
   <li>
     <a href="{{ d.url | relative_url }}">
       <span>Scan of <span class="date">{{ d.name | replace: '-event-discovery.md', '' | prepend: '20' }}</span></span>
@@ -244,4 +247,5 @@ discovery, antimicrobial research, neglected diseases and open science for globa
   </li>
 {% endfor %}
 </ul>
+<p class="see-all"><a href="{{ '/archive/events.html' | relative_url }}">See all {{ recentevents.size }} →</a></p>
 {% endif %}

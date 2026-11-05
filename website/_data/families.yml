@@ -1,0 +1,28 @@
+# One entry per digest family, in sidebar order. Drives the sidebar, the home page
+# "Recent" lists, the archive pages and previous/next links, so a new family is
+# added here (plus a defaults block in _config.yml) rather than in four templates.
+#   key     — matches `family` in _config.yml defaults and the archive page name
+#   dir     — folder the digests are staged into (path prefix, with trailing slash)
+#   suffix  — filename tail stripped to get the YY-MM-DD date
+#   nav     — sidebar / heading label
+#   item    — prefix for one digest in a list ("Week of 2026-11-02")
+- key: literature
+  dir: literature/
+  suffix: -literature-digest.md
+  nav: Literature digests
+  item: Week of
+- key: github
+  dir: github/
+  suffix: -github-digest.md
+  nav: GitHub digests
+  item: Week of
+- key: models
+  dir: models/
+  suffix: -models-digest.md
+  nav: Model incorporations
+  item: Month ending
+- key: events
+  dir: events/
+  suffix: -event-discovery.md
+  nav: Event digests
+  item: Scan of

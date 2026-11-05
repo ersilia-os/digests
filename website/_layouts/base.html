@@ -20,10 +20,6 @@
   <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 </head>
 <body>
-  {% assign digests = site.pages | where_exp: "p", "p.path contains 'literature/'" | sort: "path" | reverse %}
-  {% assign ghdigests = site.pages | where_exp: "p", "p.path contains 'github/'" | sort: "path" | reverse %}
-  {% assign eventdigests = site.pages | where_exp: "p", "p.path contains 'events/'" | sort: "path" | reverse %}
-  {% assign modeldigests = site.pages | where_exp: "p", "p.path contains 'models/'" | sort: "path" | reverse %}
 
   <input type="checkbox" id="nav-toggle" class="nav-toggle">
 
@@ -36,56 +32,8 @@
     <aside class="sidebar">
       <a href="{{ '/' | relative_url }}" class="wordmark">Ersilia <em>Digests</em></a>
       <p class="tagline">Periodic reports from the Ersilia Open Source Initiative</p>
-      <nav>
-        <p class="nav-group-title">Literature digests</p>
-        <ul>
-          {% for d in digests %}
-          <li>
-            <a href="{{ d.url | relative_url }}"{% if page.url == d.url %} class="active"{% endif %}>
-              {{ d.name | replace: '-literature-digest.md', '' | prepend: '20' }}
-            </a>
-          </li>
-          {% endfor %}
-        </ul>
-
-        {% if ghdigests.size > 0 %}
-        <p class="nav-group-title">GitHub digests</p>
-        <ul>
-          {% for d in ghdigests %}
-          <li>
-            <a href="{{ d.url | relative_url }}"{% if page.url == d.url %} class="active"{% endif %}>
-              {{ d.name | replace: '-github-digest.md', '' | prepend: '20' }}
-            </a>
-          </li>
-          {% endfor %}
-        </ul>
-        {% endif %}
-
-        {% if modeldigests.size > 0 %}
-        <p class="nav-group-title">Model incorporations</p>
-        <ul>
-          {% for d in modeldigests %}
-          <li>
-            <a href="{{ d.url | relative_url }}"{% if page.url == d.url %} class="active"{% endif %}>
-              {{ d.name | replace: '-models-digest.md', '' | prepend: '20' }}
-            </a>
-          </li>
-          {% endfor %}
-        </ul>
-        {% endif %}
-
-        {% if eventdigests.size > 0 %}
-        <p class="nav-group-title">Event digests</p>
-        <ul>
-          {% for d in eventdigests %}
-          <li>
-            <a href="{{ d.url | relative_url }}"{% if page.url == d.url %} class="active"{% endif %}>
-              {{ d.name | replace: '-event-discovery.md', '' | prepend: '20' }}
-            </a>
-          </li>
-          {% endfor %}
-        </ul>
-        {% endif %}
+      <nav aria-label="Digests">
+        {% for f in site.data.families %}{% include nav-group.html f=f %}{% endfor %}
       </nav>
     </aside>
 

@@ -1,0 +1,21 @@
+---
+layout: base
+---
+{%- assign f = site.data.families | where: "key", page.archive | first -%}
+{%- assign fpages = site.pages | where_exp: "p", "p.path contains f.dir" | where_exp: "p", "p.name contains f.suffix" | sort: "name" | reverse -%}
+<p class="eyebrow page-eyebrow"><span class="family-name">Archive</span> · Ersilia Open Source Initiative</p>
+<h1>{{ f.nav }}</h1>
+<p class="lede">{{ page.description }} {{ fpages.size }} published so far, newest first.</p>
+{%- assign cur = "" -%}
+{%- for d in fpages -%}
+  {%- assign ds = d.name | replace: f.suffix, '' | prepend: '20' -%}
+  {%- assign ym = ds | date: "%B %Y" -%}
+  {%- if ym != cur -%}
+    {%- unless forloop.first %}</ul>{% endunless %}
+<h2 class="archive-month">{{ ym }}</h2>
+<ul class="card-list">
+    {%- assign cur = ym -%}
+  {%- endif %}
+  <li><a href="{{ d.url | relative_url }}"><span>{{ f.item }} <span class="date">{{ ds }}</span></span><span class="card-meta">{% if forloop.first %}<span class="latest">Latest</span>{% endif %}<span class="arrow">→</span></span></a></li>
+  {%- if forloop.last %}</ul>{% endif -%}
+{%- endfor %}
