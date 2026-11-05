@@ -88,9 +88,9 @@ discovery, antimicrobial research, neglected diseases and open science for globa
 
 <div class="calendar">
   <div class="cal-scroll">
-    <div class="cal-inner">
+    <div class="cal-inner" style="--cal-cols: {{ ncols }};">
 
-      <div class="cal-months" style="grid-template-columns: repeat({{ ncols }}, var(--cal-cell)); column-gap: var(--cal-gap);">
+      <div class="cal-months" style="grid-template-columns: repeat({{ ncols }}, 1fr);">
         {% for m in (1..12) %}
           {% capture mdate %}{{ year }}-{% if m < 10 %}0{% endif %}{{ m }}-01{% endcapture %}
           {% assign mdoy = mdate | date: "%j" | plus: 0 %}
@@ -110,7 +110,7 @@ discovery, antimicrobial research, neglected diseases and open science for globa
            and the tooltip names everything published that day so nothing is hidden.
       {% endcomment %}
 
-      <div class="cal-grid">
+      <div class="cal-grid" style="grid-template-columns: repeat({{ ncols }}, 1fr);">
         {% for b in (1..jan1_dow) %}<span class="cal-cell is-blank"></span>{% endfor %}
         {% for i in (1..days) %}
           {% assign off = forloop.index0 | times: 86400 %}
