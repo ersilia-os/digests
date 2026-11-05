@@ -1,0 +1,28 @@
+{% comment %}
+  One sidebar group, bounded: the latest `nav_limit` digests, plus the current page if it
+  is older than that, plus a link to the family's full archive. Without the bound the
+  sidebar grew by one row per digest, forever.
+  Params: include.f — an entry from _data/families.yml
+{% endcomment %}
+{%- assign f = include.f -%}
+{%- assign nav_limit = 5 -%}
+{%- assign fpages = site.pages | where_exp: "p", "p.path contains f.dir" | where_exp: "p", "p.name contains f.suffix" | sort: "name" | reverse -%}
+{%- if fpages.size > 0 -%}
+{%- assign here = false -%}
+{%- if page.family == f.key or page.archive == f.key -%}{%- assign here = true -%}{%- endif -%}
+<details class="nav-group"{% if here or page.family == nil %} open{% endif %}>
+  <summary class="nav-group-title"><span>{{ f.nav }}</span><span class="count">{{ fpages.size }}</span></summary>
+  <ul>
+    {%- assign shown_current = false -%}
+    {%- for d in fpages limit: nav_limit -%}
+    {%- if page.url == d.url -%}{%- assign shown_current = true -%}{%- endif -%}
+    <li><a href="{{ d.url | relative_url }}"{% if page.url == d.url %} class="active" aria-current="page"{% endif %}>{{ d.name | replace: f.suffix, '' | prepend: '20' }}</a></li>
+    {%- endfor -%}
+    {%- if page.family == f.key and shown_current == false -%}
+    <li class="nav-gap" aria-hidden="true">⋯</li>
+    <li><a href="{{ page.url | relative_url }}" class="active" aria-current="page">{{ page.name | replace: f.suffix, '' | prepend: '20' }}</a></li>
+    {%- endif -%}
+    <li class="nav-all"><a href="{{ '/archive/' | append: f.key | append: '.html' | relative_url }}"{% if page.archive == f.key %} class="active" aria-current="page"{% endif %}>{% if fpages.size > nav_limit %}All {{ fpages.size }}{% else %}Archive{% endif %} <span aria-hidden="true">→</span></a></li>
+  </ul>
+</details>
+{%- endif -%}

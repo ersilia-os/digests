@@ -227,9 +227,16 @@ pill.
   redrawn or invented icon.
 - **Wordmark:** "Ersilia" in plum + "*Digests*" in italic periwinkle, above a muted
   one-line tagline. Typographic, no logo image.
-- **Sidebar archive:** one group per family, sentence-case muted group title, dates in mono.
-  The current page is shown with periwinkle text on a light periwinkle wash — no bold pill,
-  no coloured left bar.
+- **Sidebar archive:** one collapsible group per family (chevron, sentence-case title,
+  mono count). Each group is **bounded**: the latest 5 digests, the current page if it is
+  older (after a ⋯), then "All N →" to the family archive page — the sidebar never grows
+  with the number of digests. Dates in mono. The current page is periwinkle text on a light
+  periwinkle wash — no bold pill, no coloured left bar. Families are defined once in
+  `website/_data/families.yml`.
+- **Archive page:** one per family (`/archive/<family>.html`), all digests newest first,
+  grouped under month headings, as cards.
+- **Older / newer:** three tiles under each digest — previous issue, the family archive,
+  next issue — so readers can walk a series without the sidebar listing it.
 - **Page header:** an eyebrow ("Literature digest · Ersilia Open Source Initiative") above
   the H1, then the digest's legend paragraph (connectors, markers, tasks) set as a quiet
   bordered block.

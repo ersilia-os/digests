@@ -1,0 +1,19 @@
+{% comment %} Older / newer digest of the same family, so readers can walk the series
+     without the sidebar having to list every issue. {% endcomment %}
+{%- assign f = site.data.families | where: "key", page.family | first -%}
+{%- if f -%}
+{%- assign fpages = site.pages | where_exp: "p", "p.path contains f.dir" | where_exp: "p", "p.name contains f.suffix" | sort: "name" -%}
+{%- assign older = nil -%}{%- assign newer = nil -%}
+{%- for d in fpages -%}
+  {%- if d.url == page.url -%}
+    {%- assign i = forloop.index0 -%}
+    {%- if i > 0 -%}{%- assign j = i | minus: 1 -%}{%- assign older = fpages[j] -%}{%- endif -%}
+    {%- assign k = i | plus: 1 -%}{%- assign newer = fpages[k] -%}
+  {%- endif -%}
+{%- endfor -%}
+<nav class="prev-next" aria-label="More {{ f.nav | downcase }}">
+  {% if older %}<a class="pn older" href="{{ older.url | relative_url }}"><span class="pn-k">← Older</span><span class="pn-v">{{ f.item }} <span class="date">{{ older.name | replace: f.suffix, '' | prepend: '20' }}</span></span></a>{% else %}<span></span>{% endif %}
+  <a class="pn all" href="{{ '/archive/' | append: f.key | append: '.html' | relative_url }}"><span class="pn-k">Archive</span><span class="pn-v">All {{ fpages.size }}</span></a>
+  {% if newer %}<a class="pn newer" href="{{ newer.url | relative_url }}"><span class="pn-k">Newer →</span><span class="pn-v">{{ f.item }} <span class="date">{{ newer.name | replace: f.suffix, '' | prepend: '20' }}</span></span></a>{% else %}<span></span>{% endif %}
+</nav>
+{%- endif -%}
