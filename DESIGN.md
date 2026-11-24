@@ -3,8 +3,8 @@ version: alpha
 name: Ersilia Digests
 description: >-
   Design system for the Ersilia Digests site (ersilia-os.github.io/digests): a calm,
-  information-dense reading surface for periodic literature, GitHub, model-incorporation
-  and event digests. Built on the Ersilia house style — plum identity, periwinkle
+  information-dense reading surface for periodic literature, GitHub, model-incorporation,
+  maintenance and event digests. Built on the Ersilia house style — plum identity, periwinkle
   interaction, soft off-black ink — and written to the DESIGN.md specification
   (google-labs-code/design.md) with Material 3 token names.
 colors:
@@ -28,6 +28,7 @@ colors:
   family-github: "#FAA08C"
   family-events: "#8CC8FA"
   family-models: "#EEC95F"
+  family-maintenance: "#DCA0DC"
   family-multiple: "#50285A"
   dark-primary: "#AA96FA"
   dark-on-primary: "#1B1531"
@@ -160,8 +161,9 @@ components:
 
 ## Overview
 
-The Ersilia Digests are periodic reports — weekly literature and GitHub digests, monthly
-model-incorporation digests and twice-yearly event scans — published for the Ersilia team
+The Ersilia Digests are periodic reports — weekly literature and GitHub digests,
+model-maintenance snapshots, monthly model-incorporation digests and twice-yearly event
+scans — published for the Ersilia team
 and for anyone following open-source AI for global-health drug discovery. Readers arrive
 mostly from a shared link (Slack, LinkedIn), read one digest top to bottom, and leave.
 
@@ -180,7 +182,8 @@ calendar on the home page, where colour encodes which kind of digest landed on w
 - **Surfaces** are cool near-whites: page `background` #FAFAFC, the sidebar and cards on
   `surface` #FFFFFF, recessed fills (code, empty calendar cells) on `surface-container`.
 - **Family hues** encode the digest type and nothing else: mint = literature, orange =
-  GitHub, blue = events, amber = model incorporations, plum = more than one on the same day.
+  GitHub, blue = events, amber = model incorporations, pink = maintenance, plum = more than
+  one on the same day.
   They appear in the calendar and its legend, never as decoration.
 
 **Dark mode:** the `dark-*` tokens apply under `prefers-color-scheme: dark`. Periwinkle
@@ -203,6 +206,10 @@ lightens to lavender (#AA96FA) to keep AA contrast on the dark surfaces.
 - Desktop: a fixed 280px sidebar (wordmark, tagline, archive by family) beside a single
   content column. Prose is capped at 720px for line length; table-first families (events,
   model incorporations) take the 1100px wide column so headers and tables end on one edge.
+- Maintenance digests are self-contained HTML reports, not Markdown. Each is shown in a
+  viewport-tall frame in the wide column, under the usual eyebrow, title and legend block,
+  with a link to open it full screen. The report keeps its own (light) styling; the site
+  only hides its duplicate eyebrow and credit footer.
 - Below 860px the sidebar becomes an off-canvas drawer behind a sticky top bar; content
   uses a 16–22px gutter and the page never scrolls horizontally (wide tables and the
   calendar scroll inside their own containers).

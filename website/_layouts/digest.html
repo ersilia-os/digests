@@ -3,4 +3,5 @@ layout: base
 ---
 {% if page.family_name %}{% include page-header.html %}{% endif %}
 {{ content }}
+{% if page.report %}{% include report-frame.html %}{% endif %}
 {% include prev-next.html %}

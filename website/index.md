@@ -1,15 +1,15 @@
 ---
 layout: base
 title: Ersilia Digests
-description: "Weekly literature and GitHub digests, monthly model-incorporation reports and event scans from the Ersilia Open Source Initiative."
+description: "Weekly literature and GitHub digests, model-maintenance snapshots, monthly model-incorporation reports and event scans from the Ersilia Open Source Initiative."
 ---
 
 <p class="eyebrow page-eyebrow"><span class="family-name">Ersilia Open Source Initiative</span> · open-source AI for global health</p>
 
 # Ersilia Digests
 
-<p class="lede">What we read, built and shipped — weekly literature and GitHub digests, monthly
-model-incorporation reports and event scans from the
+<p class="lede">What we read, built and shipped — weekly literature and GitHub digests, model-maintenance
+snapshots, monthly model-incorporation reports and event scans from the
 <a href="https://ersilia.io">Ersilia Open Source Initiative</a>, covering AI/ML for drug
 discovery, antimicrobial research, neglected diseases and open science for global health.</p>
 
@@ -18,9 +18,10 @@ discovery, antimicrobial research, neglected diseases and open science for globa
 {% assign ghdigests = site.pages | where_exp: "p", "p.path contains 'github/'" | sort: "path" %}
 {% assign eventdigests = site.pages | where_exp: "p", "p.path contains 'events/'" | sort: "path" %}
 {% assign modeldigests = site.pages | where_exp: "p", "p.path contains 'models/'" | sort: "path" %}
+{% assign mntdigests = site.pages | where_exp: "p", "p.path contains 'maintenance/'" | sort: "path" %}
 
 {% comment %} ---------- figure out the year from the most recent digest/report of any kind ---------- {% endcomment %}
-{% assign alldigests = litdigests | concat: ghdigests | concat: eventdigests | concat: modeldigests | sort: "name" %}
+{% assign alldigests = litdigests | concat: ghdigests | concat: eventdigests | concat: modeldigests | concat: mntdigests | sort: "name" %}
 {% assign latest = alldigests | last %}
 {% if latest %}
   {% assign year = latest.name | slice: 0, 2 | prepend: '20' %}
@@ -75,6 +76,17 @@ discovery, antimicrobial research, neglected diseases and open science for globa
 {% assign modkeys = modkeys | split: "," %}
 {% assign modurls = modurls | split: "," %}
 
+{% comment %} ---------- maintenance: date -> url lookup ---------- {% endcomment %}
+{% assign mntkeys = "" %}
+{% assign mnturls = "" %}
+{% for d in mntdigests %}
+  {% assign full = d.name | replace: '-maintenance-digest.md', '' | prepend: '20' %}
+  {% assign mntkeys = mntkeys | append: full | append: "," %}
+  {% assign mnturls = mnturls | append: d.url | append: "," %}
+{% endfor %}
+{% assign mntkeys = mntkeys | split: "," %}
+{% assign mnturls = mnturls | split: "," %}
+
 {% comment %} ---------- date geometry for the grid ---------- {% endcomment %}
 {% assign jan1 = year | append: '-01-01' %}
 {% assign base_unix = jan1 | append: ' 12:00:00' | date: "%s" | plus: 0 %}
@@ -106,7 +118,8 @@ discovery, antimicrobial research, neglected diseases and open science for globa
            single "multiple" colour rather than a per-combination palette — four
            families would otherwise need fifteen colours, which stops being readable at
            13px. A multi-digest cell can only carry one href, so it opens the first
-           family present in the order literature -> github -> events -> model incorporations,
+           family present in the order literature -> github -> events -> model incorporations
+           -> maintenance,
            and the tooltip names everything published that day so nothing is hidden.
       {% endcomment %}
 
@@ -126,6 +139,8 @@ discovery, antimicrobial research, neglected diseases and open science for globa
           {% for k in evkeys %}{% if k == ds %}{% assign eu = evurls[forloop.index0] %}{% endif %}{% endfor %}
           {% assign mu = "" %}
           {% for k in modkeys %}{% if k == ds %}{% assign mu = modurls[forloop.index0] %}{% endif %}{% endfor %}
+          {% assign nu = "" %}
+          {% for k in mntkeys %}{% if k == ds %}{% assign nu = mnturls[forloop.index0] %}{% endif %}{% endfor %}
 
           {% assign n = 0 %}
           {% assign names = "" %}
@@ -151,6 +166,12 @@ discovery, antimicrobial research, neglected diseases and open science for globa
             {% assign names = names | append: "Model incorporations" %}
             {% if href == "" %}{% assign href = mu %}{% endif %}
           {% endif %}
+          {% if nu != "" %}
+            {% assign n = n | plus: 1 %}
+            {% if names != "" %}{% assign names = names | append: " + " %}{% endif %}
+            {% assign names = names | append: "Maintenance" %}
+            {% if href == "" %}{% assign href = nu %}{% endif %}
+          {% endif %}
 
           {% if n > 1 %}
             <a class="cal-cell has-multi" href="{{ href | relative_url }}" title="{{ names }} digests — {{ nice }} ({{ n }} published; opens the first)" aria-label="{{ names }} digests published {{ nice }}"></a>
@@ -162,6 +183,8 @@ discovery, antimicrobial research, neglected diseases and open science for globa
             <a class="cal-cell has-ev" href="{{ eu | relative_url }}" title="Event digest — {{ nice }}" aria-label="Event digest published {{ nice }}"></a>
           {% elsif mu != "" %}
             <a class="cal-cell has-mod" href="{{ mu | relative_url }}" title="Model incorporation digest — {{ nice }}" aria-label="Model incorporation digest published {{ nice }}"></a>
+          {% elsif nu != "" %}
+            <a class="cal-cell has-mnt" href="{{ nu | relative_url }}" title="Maintenance digest — {{ nice }}" aria-label="Maintenance digest published {{ nice }}"></a>
           {% elsif ts > today_noon %}
             <span class="cal-cell is-future" title="{{ nice }}"></span>
           {% elsif ts == today_noon %}
@@ -179,6 +202,7 @@ discovery, antimicrobial research, neglected diseases and open science for globa
     <span class="item"><span class="swatch gh"></span>GitHub</span>
     <span class="item"><span class="swatch mod"></span>Model incorporations</span>
     <span class="item"><span class="swatch ev"></span>Events</span>
+    <span class="item"><span class="swatch mnt"></span>Maintenance</span>
     <span class="item"><span class="swatch multi"></span>Multiple</span>
     <span class="item"><span class="swatch empty"></span>No digest</span>
   </div>
@@ -231,6 +255,23 @@ discovery, antimicrobial research, neglected diseases and open science for globa
 {% endfor %}
 </ul>
 <p class="see-all"><a href="{{ '/archive/models.html' | relative_url }}">See all {{ recentmodels.size }} →</a></p>
+{% endif %}
+
+{% if mntdigests.size > 0 %}
+## Recent maintenance digests
+
+{% assign recentmnt = mntdigests | reverse %}
+<ul class="card-list">
+{% for d in recentmnt limit: 5 %}
+  <li>
+    <a href="{{ d.url | relative_url }}">
+      <span>Snapshot of <span class="date">{{ d.name | replace: '-maintenance-digest.md', '' | prepend: '20' }}</span></span>
+      <span class="card-meta">{% if forloop.first %}<span class="latest">Latest</span>{% endif %}<span class="arrow">→</span></span>
+    </a>
+  </li>
+{% endfor %}
+</ul>
+<p class="see-all"><a href="{{ '/archive/maintenance.html' | relative_url }}">See all {{ recentmnt.size }} →</a></p>
 {% endif %}
 
 {% if eventdigests.size > 0 %}

@@ -29,6 +29,19 @@ jobs:
           cp -r github website/github
           if [ -d events ]; then cp -r events website/events; fi
           if [ -d models ]; then cp -r models website/models; fi
+          # Maintenance digests are self-contained HTML reports, not Markdown. Stage
+          # each one untouched (no front matter, so Jekyll copies it byte for byte)
+          # and generate a wrapper page that frames it inside the site layout.
+          if [ -d maintenance ]; then
+            mkdir -p website/maintenance/reports
+            for f in maintenance/*-maintenance-digest.html; do
+              name=$(basename "$f")
+              d="20${name%%-maintenance-digest.html}"
+              cp "$f" "website/maintenance/reports/$name"
+              printf -- '---\nreport: %s\n---\n\n# Model maintenance digest — %s\n' \
+                "$name" "$(date -d "$d" '+%-d %B %Y')" > "website/maintenance/${name%.html}.md"
+            done
+          fi
 
       - uses: ruby/setup-ruby@v1
         with:

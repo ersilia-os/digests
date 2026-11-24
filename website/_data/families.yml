@@ -26,3 +26,8 @@
   suffix: -event-discovery.md
   nav: Event digests
   item: Scan of
+- key: maintenance
+  dir: maintenance/
+  suffix: -maintenance-digest.md
+  nav: Maintenance digests
+  item: Snapshot of

@@ -154,6 +154,8 @@ def main(argv: list[str] | None = None) -> int:
     pages = sorted(
         x for x in site.rglob("*.html")
         if "og" not in x.relative_to(site).parts[:1] and x.name != "404.html"
+        # Raw maintenance reports are framed by a wrapper page, which gets the card.
+        and x.relative_to(site).parts[:2] != ("maintenance", "reports")
     )
     if args.only:
         wanted = {site / o for o in args.only}

@@ -12,7 +12,7 @@ kramdown:
   input: GFM
 
 # Render the digest Markdown with our layout without touching the source files.
-# (The digests are copied into ./literature, ./github, ./events and ./models at build time — see .github/workflows/pages.yml)
+# (The digests are copied into ./literature, ./github, ./events, ./models and ./maintenance at build time — see .github/workflows/pages.yml)
 defaults:
   - scope:
       path: "literature"
@@ -51,6 +51,16 @@ defaults:
       # and github digests have no tables, and widening prose to 1100px only makes
       # the line length worse. A future family that emits tables adds `wide: true`.
       wide: true
+  - scope:
+      path: "maintenance"
+    values:
+      layout: digest
+      # The report is an app-like page shown in a frame (see _includes/report-frame.html);
+      # it takes the wide column so the frame is not squeezed to the 720px prose width.
+      wide: true
+      family: maintenance
+      family_name: Maintenance digest
+      description: "Health of the Ersilia Model Hub: precalculation coverage, Singularity images and maintenance test outcomes for every Ready model."
 
 exclude:
   - Gemfile
