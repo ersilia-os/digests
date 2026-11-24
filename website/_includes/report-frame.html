@@ -1,0 +1,32 @@
+{% comment %}
+  Maintenance digests are self-contained HTML reports (from the model-monitoring skill),
+  not Markdown. The build stages each report untouched into maintenance/reports/ and
+  generates a one-line wrapper page for it (see .github/workflows/pages.yml), so the
+  report gets the sidebar, archive, calendar and older/newer links like every other
+  digest. The report is shown in a viewport-tall frame because it is an app-like page
+  with its own sticky tab bar; an auto-height frame would break that.
+  Params: page.report — the report's file name in maintenance/reports/
+{% endcomment %}
+{%- assign report_url = '/maintenance/reports/' | append: page.report | relative_url -%}
+<p>Precalculation coverage in isaura, Singularity images in S3 and weekly maintenance test
+outcomes for every Ready model in the Hub. <a href="{{ report_url }}">Open the report full screen ↗</a></p>
+<iframe class="report-frame" src="{{ report_url }}" title="{{ page.title | escape }}"></iframe>
+<script>
+  // Same origin, so hide the report's own eyebrow and credit footer: the site
+  // already shows both around the frame. A report without them is left as is.
+  (function () {
+    var frame = document.currentScript.previousElementSibling;
+    function trim() {
+      try {
+        var d = frame.contentDocument;
+        if (!d || !d.head || d.getElementById('digest-trim')) return;
+        var s = d.createElement('style');
+        s.id = 'digest-trim';
+        s.textContent = '.brandhead > .eyebrow, footer.credit { display: none; }';
+        d.head.appendChild(s);
+      } catch (e) {}
+    }
+    frame.addEventListener('load', trim);
+    trim();
+  })();
+</script>

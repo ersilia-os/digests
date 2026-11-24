@@ -28,6 +28,8 @@
   --family-events-hover: #6bb0f0;
   --family-models: #EEC95F;
   --family-models-hover: #e2a72e;
+  --family-maintenance: #DCA0DC;
+  --family-maintenance-hover: #cf84cf;
   --family-multiple: #50285A;
   --family-multiple-hover: #6e3a7d;
 
@@ -457,10 +459,10 @@ main {
 /* a day that has a published digest */
 a.cal-cell { transition: transform .1s ease, box-shadow .1s ease; position: relative; }
 a.cal-cell:hover { transform: scale(1.35); z-index: 2; }
-a.cal-cell.has-lit, a.cal-cell.has-gh, a.cal-cell.has-ev, a.cal-cell.has-mod {
+a.cal-cell.has-lit, a.cal-cell.has-gh, a.cal-cell.has-ev, a.cal-cell.has-mod, a.cal-cell.has-mnt {
   box-shadow: 0 0 0 1px rgba(var(--shadow-rgb), 0.18), 0 1px 3px rgba(var(--shadow-rgb), 0.20);
 }
-a.cal-cell.has-lit:hover, a.cal-cell.has-gh:hover, a.cal-cell.has-ev:hover, a.cal-cell.has-mod:hover {
+a.cal-cell.has-lit:hover, a.cal-cell.has-gh:hover, a.cal-cell.has-ev:hover, a.cal-cell.has-mod:hover, a.cal-cell.has-mnt:hover {
   box-shadow: 0 0 0 1px rgba(var(--shadow-rgb), 0.35), 0 3px 8px rgba(var(--shadow-rgb), 0.35);
 }
 a.cal-cell.has-lit { background: var(--family-literature); }
@@ -471,6 +473,8 @@ a.cal-cell.has-ev { background: var(--family-events); }
 a.cal-cell.has-ev:hover { background: var(--family-events-hover); }
 a.cal-cell.has-mod { background: var(--family-models); }
 a.cal-cell.has-mod:hover { background: var(--family-models-hover); }
+a.cal-cell.has-mnt { background: var(--family-maintenance); }
+a.cal-cell.has-mnt:hover { background: var(--family-maintenance-hover); }
 /* Two or more digests on the same day. One colour for any combination: a
    per-combination palette is unreadable at 13px. */
 a.cal-cell.has-multi {
@@ -499,4 +503,19 @@ a.cal-cell.has-multi:hover { background: var(--family-multiple-hover); }
 .cal-legend .swatch.gh { background: var(--family-github); }
 .cal-legend .swatch.ev { background: var(--family-events); }
 .cal-legend .swatch.mod { background: var(--family-models); }
+.cal-legend .swatch.mnt { background: var(--family-maintenance); }
 .cal-legend .swatch.multi { background: var(--family-multiple); }
+
+/* ---------- Maintenance digest: framed HTML report ----------
+   The report is a self-contained light-theme page with its own sticky tab bar, so it
+   gets a viewport-tall frame that scrolls internally rather than an auto-height one. */
+.report-frame {
+  display: block;
+  width: 100%;
+  height: calc(100vh - 48px);
+  min-height: 560px;
+  margin: 0 0 8px;
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--rounded);
+  background: #FAFAFC;
+}

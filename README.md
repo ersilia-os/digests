@@ -62,3 +62,14 @@ they are published, roughly every 6 months.
 - [2026-10-31](models/26-10-31-models-digest.md)
 - [2026-09-30](models/26-09-30-models-digest.md)
 - [2026-08-31](models/26-08-31-models-digest.md)
+
+## Maintenance digests
+
+- [2026-11-24](maintenance/26-11-24-maintenance-digest.html)
+
+Maintenance digests live in [`maintenance/`](maintenance/) and follow the naming
+convention `YY-MM-DD-maintenance-digest.html`. Unlike the other families they are
+self-contained HTML reports produced by the `model-monitoring` skill in
+[ersilia-skills](https://github.com/ersilia-os/ersilia-skills): precalculation coverage,
+Singularity images and maintenance test outcomes for every Ready model. They are committed
+untouched; the site build wraps each one in a page that frames it.
